@@ -1,8 +1,5 @@
-# **************************************************************************** #
-#                                MAKEFILE                                      #
-# **************************************************************************** #
 
-NAME = so_long
+NAME = cub3d
 
 CC = cc
 
@@ -19,7 +16,7 @@ GNL_DIR = get_next_line
 
 SRCS = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(GNL_DIR)/*.c)
 # SRCS = \
-# 		$(SRC_DIR)/so_long.c \
+# 		$(SRC_DIR)/cub3d.c \
 # 		$(SRC_DIR)/error.c $(SRC_DIR)/handle_keys.c $(SRC_DIR)/initialization.c \
 # 		$(SRC_DIR)/is_reachable.c $(SRC_DIR)/move.c $(SRC_DIR)/painting.c \
 # 		$(SRC_DIR)/util.c $(SRC_DIR)/util2.c $(SRC_DIR)/validation_args.c $(SRC_DIR)/validation_map.c \
