@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 02:56:17 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 03:20:50 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,10 @@ static int load_demo_map(t_game *g)
 
 	g->pl.x = 7.5;
 	g->pl.y = 7.5;
-	g->pl.dir = -M_PI / 2.0;
-	g->pl.fov = M_PI / 3.0;
+	g->pl.dir_x = 1;
+	g->pl.dir_y = 0;
+	g->pl.plane_x = 0;
+	g->pl.plane_y = -1;
 	return (0);
 }
 

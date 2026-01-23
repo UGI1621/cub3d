@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 02:54:26 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 03:47:44 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ typedef struct s_player
 {
 	double x;
 	double y;
-	double dir;
+	double dir_x;
+	double dir_y;
 	double fov;
+	double plane_x;
+	double plane_y;
 }	t_player;
 
 typedef struct s_keys
@@ -91,6 +94,8 @@ int	on_close(t_game *g);
 
 // render.c
 int game_loop(t_game *g);
+void	put_pixel(t_game *g, int x, int y, int color);
+void	clear_frame(t_game *g, int ceil_c, int floor_c);
 
 // raycast.c
 void render_3d(t_game *g);
