@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 05:41:10 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 06:39:58 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	on_key_release(int key, t_game *g);
 int	on_close(t_game *g);
 
 // render.c
-int game_loop(t_game *g);
+int 	game_loop(t_game *g);
 void	put_pixel(t_game *g, int x, int y, int color);
 void	clear_frame(t_game *g, int ceil_c, int floor_c);
 

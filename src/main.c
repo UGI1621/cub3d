@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:15:20 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 02:47:21 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 06:43:09 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int main(void)
 	t_game	g;
 
 	init_game(&g);
-	printf("bpp : %d\n", g.frame.bpp);
 	mlx_hook(g.win, 2, 1L << 0, on_key_press, &g);
 	mlx_hook(g.win, 3, 1L << 1, on_key_release, &g);
 	mlx_hook(g.win, 17, 0, on_close, &g);
