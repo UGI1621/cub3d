@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 03:47:44 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 05:41:10 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ typedef struct s_map
 	int		w;
 	int		h;
 	char	**grid;
+	int		color_n;
+	int		color_s;
+	int		color_w;
+	int		color_e;
 }	t_map;
 
 typedef struct s_player

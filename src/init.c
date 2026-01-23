@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 03:20:50 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 05:45:49 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static int load_demo_map(t_game *g)
 	int i;
 	char	*tmp[10];
 
+	g->map.color_n = 0x00FF0000;
+	g->map.color_s = 0x000000FF;
+	g->map.color_w = 0x00FFFFFF;
+	g->map.color_e = 0x00000000;
+
 	tmp[0] = "111111111111";
 	tmp[1] = "100000000001";
 	tmp[2] = "101111111101";
@@ -81,7 +86,7 @@ static int load_demo_map(t_game *g)
 	g->pl.dir_x = 1;
 	g->pl.dir_y = 0;
 	g->pl.plane_x = 0;
-	g->pl.plane_y = -1;
+	g->pl.plane_y = 1;
 	return (0);
 }
 

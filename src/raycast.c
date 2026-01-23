@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:52:46 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 03:46:33 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 05:47:47 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void render_3d(t_game *g)
 
 		double delta_dist_x;
 		if (ray_dx == 0.0)
-			delta_dist_x = 1e30; // 왜이렇게 큰값이 들어가지
+			delta_dist_x = 1e30;
 		else
-			delta_dist_x = fabs(1.0 / ray_dx); // sqrt((ray_dx^2 / ray_dy^2) + 1)이 아니지?
+			delta_dist_x = fabs(1.0 / ray_dx);
 
 		double delta_dist_y;
 		if (ray_dy == 0.0)
@@ -121,9 +121,21 @@ void render_3d(t_game *g)
 		int top = WIN_H / 2 - line_h / 2;
 		int bot = WIN_H / 2 + line_h / 2;
 
-		int color = 0x00FFAA00;
-		if (side == 1)
-			color = 0x00CC8800;
+		int color;
+		if (side == 0)
+		{
+			if (step_x > 0)
+				color = g->map.color_e;
+			else
+				color = g->map.color_w;
+		}
+		else
+		{
+			if (step_y > 0)
+				color = g->map.color_s;
+			else
+				color = g->map.color_n;
+		}
 		draw_wall_column(g, x, top, bot, color);
 		x++;
 	}
