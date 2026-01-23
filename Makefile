@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = include
-MLX_DIR = minilibx-linux
+MLX_DIR = mlx
 LIBFT_DIR = libft
 GNL_DIR = get_next_line
 
