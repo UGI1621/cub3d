@@ -6,10 +6,17 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/23 23:59:09 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 00:41:45 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// int is_valid_args(int ac, char **av)
+// {
+// 	char *tmp;
 
+// 	if (ac != 2)
+// 		return (error_msg("Usage :: ./cub3d {map.cub}"));
+// 	return (0);
+// }

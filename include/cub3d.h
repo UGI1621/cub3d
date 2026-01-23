@@ -6,15 +6,23 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/23 23:21:37 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 02:54:26 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#define WIN_W 800
-#define WIN_H 600
+# define WIN_W 800
+# define WIN_H 600
+
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 # include "get_next_line.h"
 # include "libft.h"
@@ -26,10 +34,65 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_map
+{
+	int		w;
+	int		h;
+	char	**grid;
+}	t_map;
+
+typedef struct s_player
+{
+	double x;
+	double y;
+	double dir;
+	double fov;
+}	t_player;
+
+typedef struct s_keys
+{
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+}	t_keys;
+
 typedef struct s_game
 {
 	void *mlx;
 	void *win;
+	t_img frame;
+	t_map map;
+	t_player pl;
+	t_keys keys;
 }	t_game;
+
+// init.c
+int	init_game(t_game *g);
+
+// cleanup.c
+void cleanup_and_exit(t_game *g, int code);
+
+// input.c
+int on_key_press(int key, t_game *g);
+int	on_key_release(int key, t_game *g);
+int	on_close(t_game *g);
+
+// render.c
+int game_loop(t_game *g);
+
+// raycast.c
+void render_3d(t_game *g);
 
 #endif
