@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 06:39:58 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/24 09:58:56 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <errno.h>
 
 typedef struct s_img
 {
@@ -85,23 +86,30 @@ typedef struct s_game
 	t_keys keys;
 }	t_game;
 
-// init.c
-int	init_game(t_game *g);
 
 // cleanup.c
 void cleanup_and_exit(t_game *g, int code);
+
+// error.c
+int error_msg(char *msg);
+
+// init.c
+int	init_game(t_game *g);
 
 // input.c
 int on_key_press(int key, t_game *g);
 int	on_key_release(int key, t_game *g);
 int	on_close(t_game *g);
 
+// raycast.c
+void render_3d(t_game *g);
+
 // render.c
 int 	game_loop(t_game *g);
 void	put_pixel(t_game *g, int x, int y, int color);
 void	clear_frame(t_game *g, int ceil_c, int floor_c);
 
-// raycast.c
-void render_3d(t_game *g);
+// validation.c
+int valid_args(int ac, char **av);
 
 #endif
