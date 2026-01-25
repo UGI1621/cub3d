@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 09:58:56 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/25 21:33:41 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ typedef struct s_img
 
 typedef struct s_map
 {
+	int		fd;
 	int		w;
 	int		h;
 	char	**grid;
-	int		color_n;
-	int		color_s;
-	int		color_w;
-	int		color_e;
+	void		*texture_n;
+	void		*texture_s;
+	void		*texture_w;
+	void		*texture_e;
 }	t_map;
 
 typedef struct s_player
@@ -101,6 +102,9 @@ int on_key_press(int key, t_game *g);
 int	on_key_release(int key, t_game *g);
 int	on_close(t_game *g);
 
+// parsing_cub.c
+int parsing_cub(t_game *g);
+
 // raycast.c
 void render_3d(t_game *g);
 
@@ -110,6 +114,7 @@ void	put_pixel(t_game *g, int x, int y, int color);
 void	clear_frame(t_game *g, int ceil_c, int floor_c);
 
 // validation.c
-int valid_args(int ac, char **av);
+int valid_args(int ac, char **av, t_game *g);
+int is_right_extention(char fname, char *ext);
 
 #endif
