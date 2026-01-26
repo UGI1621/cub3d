@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:15:20 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 02:40:39 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 03:11:44 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int main(int ac, char **av)
 		// clean_up??
 		return (1);
 	}
-	if (!parsing_map(&g))
+	if (parsing_map(&g))
 	{
 		// clean_up??
 		return (1);
 	}
+	// destroy_all(&g);
+	cleanup_and_exit(&g, 0);
 	// mlx_hook(g.win, 2, 1L << 0, on_key_press, &g);
 	// mlx_hook(g.win, 3, 1L << 1, on_key_release, &g);
 	// mlx_hook(g.win, 17, 0, on_close, &g);
