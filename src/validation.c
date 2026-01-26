@@ -6,24 +6,38 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/25 20:31:36 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 01:56:26 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_right_extention(char fname, char *ext)
+int	is_right_extention(char *fname, char *ext)
 {
 	char *ptr;
 	int		ext_len;
 
 	ext_len = ft_strlen(ext);
 	ptr = ft_strrchr(fname, '.') + 1;
-	if (!ptr || ft_strlen(ptr) != ext_len)
+	if (!ptr || (ft_strlen(ptr) != (size_t)ext_len))
 		return (0);
-	if (!ft_strncmp(ptr, ext, ext_len))
+	if (ft_strncmp(ptr, ext, ext_len))
 		return (0);
 	return (1);
+}
+
+int is_right_map_element(char c, int *user)
+{
+	if (c == ' ' || c == '1' || c == '0' || c == '\n')
+		return (1);
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		(*user)++;
+		if ((*user) > 1)
+			return (0);
+		return (1);
+	}
+	return (0);
 }
 
 int valid_args(int ac, char **av, t_game *g)
@@ -31,8 +45,10 @@ int valid_args(int ac, char **av, t_game *g)
 	int fd;
 	char dir_test;
 
-	if (ac != 2 || !is_right_extention(av[1], "cub"))
+	if (ac != 2)
 		return (error_msg("Usage :: ./cub3d {path_of_cub_file}"));
+	if (!is_right_extention(av[1], "cub"))
+		return (error_msg("Error :: not a .cub file"));
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{

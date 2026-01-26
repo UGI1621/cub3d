@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/26 23:12:08 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 02:04:31 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_map
 	int		f;
 	int		c;
 	char	**grid;
+	int		grid_fd;
 	void		*texture_n;
 	void		*texture_s;
 	void		*texture_w;
@@ -107,6 +108,9 @@ int	on_close(t_game *g);
 // parsing_cub.c
 int parsing_cub(t_game *g);
 
+// parsing_map.c
+int parsing_map(t_game *g);
+
 // raycast.c
 void render_3d(t_game *g);
 
@@ -121,10 +125,12 @@ int rgb_to_int(char *str, t_game *g);
 
 // validation.c
 int valid_args(int ac, char **av, t_game *g);
-int is_right_extention(char fname, char *ext);
+int	is_right_extention(char *fname, char *ext);
+int is_right_map_element(char c, int *user);
 
 // xpm_to_image.c
 int is_texture(char *str);
+int check_texture(t_game *g);
 int xpm_to_image(char *str, t_game *g);
 
 #endif

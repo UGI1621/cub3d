@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/01/26 23:10:17 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 02:40:30 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int parse_sig(char *str, t_game *g)
 {
+	int len;
+
+	if (!(*str))
+		return (0);
+	len = ft_strlen(str);
+	str[len - 1] = 0;
 	if (is_texture(str))
 	{
 		if (xpm_to_image(str, g))
@@ -25,6 +31,13 @@ int parse_sig(char *str, t_game *g)
 			return (1);
 	}
 	return (0);
+}
+
+int is_map_turn(t_game *g)
+{
+	if (!g->map.c || !g->map.f || !g->map.texture_e || !g->map.texture_n || !g->map.texture_s || !g->map.texture_w)
+		return (0);
+	return (1);
 }
 
 int parsing_cub(t_game *g)
@@ -44,7 +57,11 @@ int parsing_cub(t_game *g)
 			return (1);
 		}
 		free(temp);
+		if (is_map_turn(g))
+			break ;
 		line = get_next_line(g->map.fd);
 	}
+	if (check_texture(g))
+			return (error_msg("Error :: fail mlx_xpm_file_to_image"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/01/26 23:32:35 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 01:44:07 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void free_2ptr(char **str)
 	str = NULL;
 }
 
-static int append_value(t_game *g, char *rgb, char type)
+static int append_value(t_game *g, char **rgb, char type)
 {
 	int re;
 	int gr;

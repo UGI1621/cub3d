@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/26 23:12:32 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 01:00:33 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ static void	init_textures(t_game *g)
 	g->map.texture_e = NULL;
 	g->map.c = 0;
 	g->map.f = 0;
+	g->map.grid_fd = -1;
 }
 
 int	init_game(t_game *g)
