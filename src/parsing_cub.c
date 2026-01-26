@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/01/25 21:44:28 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/26 23:10:17 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 int parse_sig(char *str, t_game *g)
 {
-	int img_w;
-	int img_h;
-
-	if (!ft_strncmp(str, "NO", 2))
+	if (is_texture(str))
 	{
-		str += 2;
-		while (ft_isspace(*str))
-			str++;
-		g->map.texture_n = mlx_xpm_to_image(g->mlx, str, &img_w, &img_h);
-		if (img_w != 16 || img_h != 16 || g->map.texture_n == NULL)
-			return (error_msg("Error :: invalid xmp file"));
+		if (xpm_to_image(str, g))
+			return (1);
+	}
+	else if (is_fc(str))
+	{
+		if (rgb_to_int(str, g))
+			return (1);
 	}
 	return (0);
 }

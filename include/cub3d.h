@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/25 21:33:41 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/26 23:12:08 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct s_map
 	int		fd;
 	int		w;
 	int		h;
+	int		f;
+	int		c;
 	char	**grid;
 	void		*texture_n;
 	void		*texture_s;
@@ -113,8 +115,16 @@ int 	game_loop(t_game *g);
 void	put_pixel(t_game *g, int x, int y, int color);
 void	clear_frame(t_game *g, int ceil_c, int floor_c);
 
+// rgb_to_int.c
+int is_fc(char *str);
+int rgb_to_int(char *str, t_game *g);
+
 // validation.c
 int valid_args(int ac, char **av, t_game *g);
 int is_right_extention(char fname, char *ext);
+
+// xpm_to_image.c
+int is_texture(char *str);
+int xpm_to_image(char *str, t_game *g);
 
 #endif
