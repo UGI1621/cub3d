@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 02:43:41 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/27 08:52:28 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int make_grid_file(t_game *g)
 		line = get_next_line(g->map.fd);
 	}
 	close(g->map.fd);
+	close(g->map.grid_fd);
 	return (0);
 }
 
@@ -73,6 +74,7 @@ static int check_element(t_game *g)
 
 	user = 0;
 	height = 0;
+	g->map.grid_fd = open("map_grid.txt", O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(g->map.grid_fd);
@@ -84,6 +86,7 @@ static int check_element(t_game *g)
 		free(line);
 	}
 	g->map.h = height;
+	close(g->map.grid_fd);
 	return (0);
 }
 
@@ -93,8 +96,10 @@ int parsing_map(t_game *g)
 		return (1);
 	if (check_element(g))
 		return (1);
-	// g->map.grid = (char **)ft_calloc(g->map.h, sizeof(char *));
-	// if (!g->map.grid)
-	// 	return (error_msg("Error :: fail malloc"));
+	g->map.grid = (char **)ft_calloc(g->map.h, sizeof(char *));
+	if (!g->map.grid)
+		return (error_msg("Error :: fail malloc"));
+	if (fill_grid(g))
+		return (1);
 	return (0);
 }
