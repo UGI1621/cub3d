@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:33:24 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 05:29:21 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 14:28:17 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void apply_movement(t_game *g)
 
 	if (g->keys.left || g->keys.right)
 	{
-		double angle = (g->keys.left ? -rot : rot);
+		double angle = (g->keys.left ? rot : -rot);
 		double old_dir_x = g->pl.dir_x;
 		double old_plane_x = g->pl.plane_x;
 

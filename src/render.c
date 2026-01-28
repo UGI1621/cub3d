@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:02:17 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 03:46:33 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 12:59:13 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	clear_frame(t_game *g, int ceil_c, int floor_c)
 
 int game_loop(t_game *g)
 {
-	clear_frame(g, 0x00C8C8C8, 0x00505050);
+	clear_frame(g, g->map.c, g->map.f);
 	render_3d(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->frame.img, 0, 0);
 	return (0);

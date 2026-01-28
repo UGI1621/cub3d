@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 12:53:27 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 14:03:57 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ void bfs(t_game *g, int w, int h, int *sig)
 		*sig = 1;
 		return ;
 	}
+	if (is_player(g->map.copy_grid, w, h))
+		update_player_data(g, w, h, g->map.copy_grid[h][w]);
 	g->map.copy_grid[h][w] = 'B';
-	print_grid(g->map.copy_grid);
-	usleep(50000); // 1000000 = 1sec
+	// print_grid(g->map.copy_grid);
+	// usleep(50000); // 1000000 = 1sec
 	bfs(g, w + 1, h, sig);
 	bfs(g, w - 1, h, sig);
 	bfs(g, w, h + 1, sig);

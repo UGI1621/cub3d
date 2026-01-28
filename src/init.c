@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 10:52:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 13:57:53 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,22 @@ static void init_keys(t_game *g)
 // 	return (0);
 // }
 
+static void init_player_info(t_game *g)
+{
+	g->pl.x = 0;
+	g->pl.y = 0;
+	g->pl.dir_x = 0;
+	g->pl.dir_y = 0;
+	g->pl.plane_x = 0;
+	g->pl.plane_y = 0;
+}
+
 static void	init_map_info(t_game *g)
 {
-	g->map.texture_n = NULL;
-	g->map.texture_s = NULL;
-	g->map.texture_w = NULL;
-	g->map.texture_e = NULL;
+	g->map.tex_n.ptr = NULL;
+	g->map.tex_s.ptr = NULL;
+	g->map.tex_w.ptr = NULL;
+	g->map.tex_e.ptr = NULL;
 	g->map.c = 0;
 	g->map.f = 0;
 	g->map.grid_fd = -1;
@@ -110,6 +120,7 @@ int	init_game(t_game *g)
 	g->frame.img = NULL;
 	g->map.grid = NULL;
 	init_map_info(g);
+	init_player_info(g);
 	init_keys(g);
 	// if (load_demo_map(g) != 0)
 	// 	return (0);

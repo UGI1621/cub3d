@@ -6,15 +6,15 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 10:52:32 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 14:24:19 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_W 800
-# define WIN_H 600
+# define WIN_W 1280
+# define WIN_H 720
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -44,6 +44,17 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_tex
+{
+	void	*ptr;
+	char	*addr;
+	int		w;
+	int		h;
+	int		bpp;
+	int		line_len;
+	int		endian;
+} t_tex;
+
 typedef struct s_map
 {
 	int		fd;
@@ -54,10 +65,10 @@ typedef struct s_map
 	char	**grid;
 	char	**copy_grid;
 	int		grid_fd;
-	void		*texture_n;
-	void		*texture_s;
-	void		*texture_w;
-	void		*texture_e;
+	t_tex	tex_n;
+	t_tex	tex_s;
+	t_tex	tex_w;
+	t_tex	tex_e;
 }	t_map;
 
 typedef struct s_player
@@ -66,7 +77,7 @@ typedef struct s_player
 	double y;
 	double dir_x;
 	double dir_y;
-	double fov;
+	// double fov;
 	double plane_x;
 	double plane_y;
 }	t_player;
@@ -115,6 +126,10 @@ int parsing_cub(t_game *g);
 
 // parsing_map.c
 int parsing_map(t_game *g);
+
+// player.c
+int is_player(char **grid, int w, int h);
+void update_player_data(t_game *g, int w, int h, char dir);
 
 // raycast.c
 void render_3d(t_game *g);

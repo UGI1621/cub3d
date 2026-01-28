@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:34:27 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 12:20:39 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 13:37:13 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void cleanup_and_exit(t_game *g, int code)
 	free_map(g);
 	if (g->mlx && g->win)
 		mlx_destroy_window(g->mlx, g->win);
-	if (g->mlx && g->map.texture_s)
-		mlx_destroy_image(g->mlx, g->map.texture_s);
-	if (g->mlx && g->map.texture_n)
-		mlx_destroy_image(g->mlx, g->map.texture_n);
-	if (g->mlx && g->map.texture_e)
-		mlx_destroy_image(g->mlx, g->map.texture_e);
-	if (g->mlx && g->map.texture_w)
-		mlx_destroy_image(g->mlx, g->map.texture_w);
+	if (g->mlx && g->map.tex_s.ptr)
+		mlx_destroy_image(g->mlx, g->map.tex_s.ptr);
+	if (g->mlx && g->map.tex_n.ptr)
+		mlx_destroy_image(g->mlx, g->map.tex_n.ptr);
+	if (g->mlx && g->map.tex_e.ptr)
+		mlx_destroy_image(g->mlx, g->map.tex_e.ptr);
+	if (g->mlx && g->map.tex_w.ptr)
+		mlx_destroy_image(g->mlx, g->map.tex_w.ptr);
 	if (g->mlx && g->frame.img)
 		mlx_destroy_image(g->mlx, g->frame.img);
 	if (g->mlx)

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 02:33:29 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 13:44:22 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,56 @@ int is_texture(char *str)
 	return (0);
 }
 
+static int	load_texture_info(t_game *g)
+{
+	g->map.tex_n.addr = mlx_get_data_addr(g->map.tex_n.ptr, &g->map.tex_n.bpp, &g->map.tex_n.line_len, &g->map.tex_n.endian);
+	if (!g->map.tex_n.addr)
+		return (1);
+	g->map.tex_s.addr = mlx_get_data_addr(g->map.tex_s.ptr, &g->map.tex_s.bpp, &g->map.tex_s.line_len, &g->map.tex_s.endian);
+	if (!g->map.tex_s.addr)
+		return (1);
+	g->map.tex_e.addr = mlx_get_data_addr(g->map.tex_e.ptr, &g->map.tex_e.bpp, &g->map.tex_e.line_len, &g->map.tex_e.endian);
+	if (!g->map.tex_e.addr)
+		return (1);
+	g->map.tex_w.addr = mlx_get_data_addr(g->map.tex_w.ptr, &g->map.tex_n.bpp, &g->map.tex_n.line_len, &g->map.tex_n.endian);
+	if (!g->map.tex_w.addr)
+		return (1);
+	return (0);
+}
+
 int check_texture(t_game *g)
 {
-	if (g->map.texture_n == NULL || g->map.texture_s == NULL || g->map.texture_w == NULL || g->map.texture_e == NULL)
-		return (1);
+	if (g->map.tex_n.ptr == NULL || g->map.tex_s.ptr == NULL || g->map.tex_w.ptr == NULL || g->map.tex_e.ptr == NULL)
+		return (error_msg("Error :: fail mlx_xpm_file_to_image"));
+	if (g->map.tex_n.w != 16 || g->map.tex_n.h != 16)
+		return (error_msg("Error :: invalid size of xpm"));
+	if (g->map.tex_s.w != 16 || g->map.tex_s.h != 16)
+		return (error_msg("Error :: invalid size of xpm"));
+	if (g->map.tex_e.w != 16 || g->map.tex_e.h != 16)
+		return (error_msg("Error :: invalid size of xpm"));
+	if (g->map.tex_w.w != 16 || g->map.tex_w.h != 16)
+		return (error_msg("Error :: invalid size of xpm"));
+	if (load_texture_info(g))
+		return (error_msg("Error :: fail mlx_get_data_addr"));
 	return (0);
 }
 
 int xpm_to_image(char *str, t_game *g)
 {
-	int img_w;
-	int img_h;
 	char *type;
 
-	img_w = 0;
-	img_h = 0;
 	type = ft_substr(str, 0, 2);
 	str += 2;
 	while (ft_isspace(*str))
 		str++;
 	if (!ft_strncmp(type, "NO", 2))
-		g->map.texture_n = mlx_xpm_file_to_image(g->mlx, str, &img_w, &img_h);
+		g->map.tex_n.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_n.w, &g->map.tex_n.h);
 	else if (!ft_strncmp(type, "SO", 2))
-		g->map.texture_s = mlx_xpm_file_to_image(g->mlx, str, &img_w, &img_h);
+		g->map.tex_s.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_s.w, &g->map.tex_s.h);
 	else if (!ft_strncmp(type, "WE", 2))
-		g->map.texture_w = mlx_xpm_file_to_image(g->mlx, str, &img_w, &img_h);
+		g->map.tex_w.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_w.w, &g->map.tex_w.h);
 	else if (!ft_strncmp(type, "EA", 2))
-		g->map.texture_e = mlx_xpm_file_to_image(g->mlx, str, &img_w, &img_h);
+		g->map.tex_e.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_e.w, &g->map.tex_e.h);
 	free(type);
-	if (img_w != 16 || img_h != 16)
-		return (error_msg("Error :: invalid xmp size"));
 	return (0);
 }
