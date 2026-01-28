@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 13:44:22 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 18:57:46 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	load_texture_info(t_game *g)
 	g->map.tex_e.addr = mlx_get_data_addr(g->map.tex_e.ptr, &g->map.tex_e.bpp, &g->map.tex_e.line_len, &g->map.tex_e.endian);
 	if (!g->map.tex_e.addr)
 		return (1);
-	g->map.tex_w.addr = mlx_get_data_addr(g->map.tex_w.ptr, &g->map.tex_n.bpp, &g->map.tex_n.line_len, &g->map.tex_n.endian);
+	g->map.tex_w.addr = mlx_get_data_addr(g->map.tex_w.ptr, &g->map.tex_w.bpp, &g->map.tex_w.line_len, &g->map.tex_w.endian);
 	if (!g->map.tex_w.addr)
 		return (1);
 	return (0);

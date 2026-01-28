@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 14:24:19 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 18:10:32 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,22 @@ typedef struct s_keys
 	int right;
 }	t_keys;
 
+typedef struct s_rc
+{
+	int map_x;
+	int map_y;
+	double ray_dx;
+	double ray_dy;
+	double delta_dist_x;
+	double delta_dist_y;
+	double side_dist_x;
+	double side_dist_y;
+	double prep_dist;
+	int step_x;
+	int step_y;
+	int side;
+}	t_rc;
+
 typedef struct s_game
 {
 	void *mlx;
@@ -100,8 +116,15 @@ typedef struct s_game
 	t_map map;
 	t_player pl;
 	t_keys keys;
+	t_rc	rc;
 }	t_game;
 
+// calc_rc.c
+void calculate_rc(t_game *g, int x);
+void calc_append_delta_dist(t_game *g);
+void	calc_step_side_dist(t_game *g);
+void calc_delta_dists(t_game *g);
+void calc_ray(t_game *g, int x);
 
 // cleanup.c
 void cleanup_and_exit(t_game *g, int code);
@@ -132,6 +155,7 @@ int is_player(char **grid, int w, int h);
 void update_player_data(t_game *g, int w, int h, char dir);
 
 // raycast.c
+int	is_wall(t_game *g, int mx, int my);
 void render_3d(t_game *g);
 
 // render.c

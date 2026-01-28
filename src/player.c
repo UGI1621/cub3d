@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:58:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 14:19:37 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 19:17:20 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ void update_player_data(t_game *g, int w, int h, char dir)
 	set_player_dir(g, dir);
 	if (dir == 'N')
 	{
-		g->pl.plane_x = -1;
+		g->pl.plane_x = 1;
 		g->pl.plane_y = 0;
 	}
 	if (dir == 'S')
 	{
-		g->pl.plane_x = 1;
+		g->pl.plane_x = -1;
 		g->pl.plane_y = 0;
 	}
 	if (dir == 'W')
 	{
 		g->pl.plane_x = 0;
-		g->pl.plane_y = 1;
+		g->pl.plane_y = -1;
 	}
 	if (dir == 'E')
 	{
 		g->pl.plane_x = 0;
-		g->pl.plane_y = -1;
+		g->pl.plane_y = 1;
 	}
 }
