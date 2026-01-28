@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 02:40:30 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 10:38:19 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int parsing_cub(t_game *g)
 		if (parse_sig(line, g))
 		{
 			free(temp);
-			return (1);
+			return (1); // 순서 안맞음
 		}
 		free(temp);
 		if (is_map_turn(g))

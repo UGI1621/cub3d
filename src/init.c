@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 09:28:09 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 10:52:48 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static void	init_map_info(t_game *g)
 	g->map.f = 0;
 	g->map.grid_fd = -1;
 	g->map.grid = NULL;
+	g->map.copy_grid = NULL;
 }
 
 int	init_game(t_game *g)

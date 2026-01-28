@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:34:27 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 03:11:57 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 10:10:16 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,15 @@ void cleanup_and_exit(t_game *g, int code)
 		mlx_destroy_display(g->mlx);
 	free(g->mlx);
 	exit(code);
+}
+
+void	free_grid(char **grid)
+{
+	int i;
+
+	i = -1;
+	while (grid[++i])
+		free(grid[i]);
+	free(grid);
+	grid = NULL;
 }

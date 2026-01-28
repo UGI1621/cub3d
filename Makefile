@@ -3,8 +3,8 @@ NAME = cub3d
 
 CC = cc
 
-# CFLAGS = -Wall -Wextra -Werror
-CFLAGS =
+CFLAGS = -Wall -Wextra -Werror
+# CFLAGS =
 
 # Directories
 SRC_DIR = src

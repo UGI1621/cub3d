@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 08:59:57 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 10:52:32 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_map
 	int		f;
 	int		c;
 	char	**grid;
+	char	**copy_grid;
 	int		grid_fd;
 	void		*texture_n;
 	void		*texture_s;
@@ -93,6 +94,7 @@ typedef struct s_game
 
 // cleanup.c
 void cleanup_and_exit(t_game *g, int code);
+void	free_grid(char **grid);
 
 // error.c
 int error_msg(char *msg);
