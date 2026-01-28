@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 03:12:11 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 08:59:57 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ void cleanup_and_exit(t_game *g, int code);
 
 // error.c
 int error_msg(char *msg);
+
+// grid.c
+int	fill_grid(t_game *g);
 
 // init.c
 int	init_game(t_game *g);

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 01:56:26 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 09:20:48 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ int is_right_map_element(char c, int *user)
 {
 	if (c == ' ' || c == '1' || c == '0' || c == '\n')
 		return (1);
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (user)
 	{
-		(*user)++;
-		if ((*user) > 1)
-			return (0);
-		return (1);
+		if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		{
+			(*user)++;
+			if ((*user) > 1)
+				return (0);
+			return (1);
+		}
 	}
 	return (0);
 }

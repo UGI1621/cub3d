@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 08:52:28 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/28 09:38:43 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ static int make_grid_file(t_game *g)
 	return (0);
 }
 
-static int is_valid_elements(char *str, t_game *g, int *user)
+static int is_valid_elements(char *str, int *ori_width, int *user)
 {
-	int width;
+	int new_width;
 
-	width = 0;
-	while (str[width])
+	new_width = 0;
+	while (str[new_width])
 	{
-		if (!is_right_map_element(str[width], user))
+		if (!is_right_map_element(str[new_width], user))
 			return (0);
-		width++;
+		new_width++;
 	}
-	if (g->map.w < width)
-		g->map.w = width;
+	if (*ori_width < new_width)
+		*ori_width = new_width;
 	return (1);
 }
 
@@ -70,22 +70,25 @@ static int check_element(t_game *g)
 {
 	char *line;
 	int height;
+	int width;
 	int user;
 
 	user = 0;
 	height = 0;
+	width = 0;
 	g->map.grid_fd = open("map_grid.txt", O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(g->map.grid_fd);
 		if (!line)
 			break ;
-		if (!is_valid_elements(line, g, &user))
+		if (!is_valid_elements(line, &width, &user))
 			return (error_msg("Error :: invalid map element"));
 		height++;
 		free(line);
 	}
 	g->map.h = height;
+	g->map.w = width;
 	close(g->map.grid_fd);
 	return (0);
 }
@@ -96,7 +99,7 @@ int parsing_map(t_game *g)
 		return (1);
 	if (check_element(g))
 		return (1);
-	g->map.grid = (char **)ft_calloc(g->map.h, sizeof(char *));
+	g->map.grid = (char **)ft_calloc(g->map.h + 1, sizeof(char *));
 	if (!g->map.grid)
 		return (error_msg("Error :: fail malloc"));
 	if (fill_grid(g))
