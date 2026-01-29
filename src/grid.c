@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 20:25:49 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 21:46:12 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int	fill_grid(t_game *g)
 			break ;
 		if (copy_map_to_grid(g, line, i))
 			return (1);
+		free(line);
 		i++;
 	}
 	g->map.grid[g->map.h] = NULL;
