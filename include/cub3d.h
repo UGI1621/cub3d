@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 02:59:47 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 05:54:48 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void			free_grid(char **grid);
 
 // error.c
 int				error_msg(char *msg);
+int				error_elements(t_game *g);
 
 // grid.c
 int				fill_grid(t_game *g);
@@ -151,6 +152,7 @@ void			move_s(t_game *g, double move);
 void			move_d(t_game *g, double move);
 
 // parsing_cub.c
+int				is_map_turn(t_game *g);
 int				parsing_cub(t_game *g);
 
 // parsing_map.c
@@ -174,12 +176,13 @@ int				is_fc(char *str);
 int				rgb_to_int(char *str, t_game *g);
 
 // validation.c
+int				is_texture(char *str);
 int				valid_args(int ac, char **av, t_game *g);
 int				is_right_extention(char *fname, char *ext);
 int				is_right_map_element(char c, int *user);
+int				valid_files(char *str, char* type);
 
 // xpm_to_image.c
-int				is_texture(char *str);
 int				check_texture(t_game *g);
 int				xpm_to_image(char *str, t_game *g);
 

@@ -6,13 +6,13 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 02:49:53 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 06:11:03 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_sig(char *str, t_game *g)
+static int	parse_sig(char *str, t_game *g)
 {
 	int	len;
 
@@ -30,6 +30,8 @@ int	parse_sig(char *str, t_game *g)
 		if (rgb_to_int(str, g))
 			return (1);
 	}
+	else
+		return (error_elements(g));
 	return (0);
 }
 

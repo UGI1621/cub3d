@@ -6,11 +6,19 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 22:03:12 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 06:01:41 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	is_texture(char *str)
+{
+	if (!ft_strncmp(str, "NO", 2) || !ft_strncmp(str, "SO", 2)
+		|| !ft_strncmp(str, "WE", 2) || !ft_strncmp(str, "EA", 2))
+		return (1);
+	return (0);
+}
 
 int	is_right_extention(char *fname, char *ext)
 {
@@ -43,6 +51,30 @@ int	is_right_map_element(char c, int *user)
 			return (1);
 		}
 	}
+	return (0);
+}
+
+int	valid_files(char *str, char* type)
+{
+	char dir_test;
+	int	fd;
+
+	fd = open(str, O_RDONLY);
+	if (fd == -1)
+	{
+		free(type);
+		if (errno == EACCES)
+			return (error_msg("Error :: xmp : permission denied"));
+		else
+			return (error_msg("Error :: xmp : open failed"));
+	}
+	if (read(fd, &dir_test, 1) == -1 && errno == EISDIR)
+	{
+		free(type);
+		close(fd);
+		return (error_msg("Error :: xmp : is directory"));
+	}
+	close(fd);
 	return (0);
 }
 
