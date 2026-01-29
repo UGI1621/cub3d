@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:11:35 by saan              #+#    #+#             */
-/*   Updated: 2025/04/14 23:08:00 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 02:48:06 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ void	ft_read(int fd, char *buf, char **remain)
 	}
 }
 
+void *inavlid_fd(char *remain)
+{
+	free(remain);
+	remain = NULL;
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*buf;
@@ -72,7 +79,7 @@ char	*get_next_line(int fd)
 	static char	*remain;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (inavlid_fd(remain));
 	if (!remain)
 		remain = ft_strdup("");
 	if (!remain)

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:15:20 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 19:31:55 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 03:00:01 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	main(int ac, char **av)
 	if (init_game(&g))
 		return (1);
 	if (parsing_cub(&g))
+	{
+		cleanup_and_exit(&g, 1);
 		return (1);
+	}
 	if (parsing_map(&g))
 		return (1);
 	mlx_hook(g.win, 2, 1L << 0, on_key_press, &g);

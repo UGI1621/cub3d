@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 19:32:21 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 02:13:03 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,29 @@ static void	free_2ptr(char **str)
 	str = NULL;
 }
 
+static int	is_already_def(t_game *g, char type)
+{
+	if (type == 'F')
+	{
+		if (g->map.f != -1)
+			return (error_msg("Error :: multiple define RGB"));
+	}
+	if (type == 'C')
+	{
+		if (g->map.c != -1)
+			return (error_msg("Error :: multiple define RGB"));
+	}
+	return (0);
+}
+
 static int	append_value(t_game *g, char **rgb, char type)
 {
 	int	re;
 	int	gr;
 	int	bl;
 
+	if (is_already_def(g, type))
+		return (1);
 	re = ft_atoi(rgb[0]);
 	gr = ft_atoi(rgb[1]);
 	bl = ft_atoi(rgb[2]);

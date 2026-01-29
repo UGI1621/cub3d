@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 19:32:27 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 02:55:28 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,33 @@ int	check_texture(t_game *g)
 		return (error_msg("Error :: invalid size of xpm"));
 	if (load_texture_info(g))
 		return (error_msg("Error :: fail mlx_get_data_addr"));
+	if (g->map.c == -1 || g->map.f == -1)
+		return (error_msg("Error :: not define c or f"));
+	return (0);
+}
+
+static int is_already_def(t_game *g, char *type)
+{
+	if (!ft_strncmp(type, "NO", 2))
+	{
+		if (g->map.tex_n.ptr)
+			return (error_msg("Error :: multiple define of wall texture"));
+	}
+	if (!ft_strncmp(type, "SO", 2))
+	{
+		if (g->map.tex_s.ptr)
+			return (error_msg("Error :: multiple define of wall texture"));
+	}
+	if (!ft_strncmp(type, "WE", 2))
+	{
+		if (g->map.tex_w.ptr)
+			return (error_msg("Error :: multiple define of wall texture"));
+	}
+	if (!ft_strncmp(type, "EA", 2))
+	{
+		if (g->map.tex_e.ptr)
+			return (error_msg("Error :: multiple define of wall texture"));
+	}
 	return (0);
 }
 
@@ -64,19 +91,24 @@ int	xpm_to_image(char *str, t_game *g)
 	char	*type;
 
 	type = ft_substr(str, 0, 2);
+	if (is_already_def(g, type))
+	{
+		free(type);
+		return (1);
+	}
 	str += 2;
 	while (ft_isspace(*str))
 		str++;
 	if (!ft_strncmp(type, "NO", 2))
 		g->map.tex_n.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_n.w,
 				&g->map.tex_n.h);
-	else if (!ft_strncmp(type, "SO", 2))
+	if (!ft_strncmp(type, "SO", 2))
 		g->map.tex_s.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_s.w,
 				&g->map.tex_s.h);
-	else if (!ft_strncmp(type, "WE", 2))
+	if (!ft_strncmp(type, "WE", 2))
 		g->map.tex_w.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_w.w,
 				&g->map.tex_w.h);
-	else if (!ft_strncmp(type, "EA", 2))
+	if (!ft_strncmp(type, "EA", 2))
 		g->map.tex_e.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_e.w,
 				&g->map.tex_e.h);
 	free(type);

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 20:25:19 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 02:49:53 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	parse_sig(char *str, t_game *g)
 
 int	is_map_turn(t_game *g)
 {
-	if (!g->map.c || !g->map.f || !g->map.tex_e.ptr || !g->map.tex_n.ptr
+	if (g->map.c == -1 || g->map.f == -1 || !g->map.tex_e.ptr || !g->map.tex_n.ptr
 		|| !g->map.tex_s.ptr || !g->map.tex_w.ptr)
 		return (0);
 	return (1);
@@ -54,8 +54,9 @@ int	parsing_cub(t_game *g)
 			line++;
 		if (parse_sig(line, g))
 		{
+			get_next_line(-1);
 			free(temp);
-			return (error_msg("Error :: inavlid order of cub file"));
+			return (1);
 		}
 		free(temp);
 		if (is_map_turn(g))

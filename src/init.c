@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 19:31:23 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/30 03:00:31 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	init_map_info(t_game *g)
 	g->map.tex_s.ptr = NULL;
 	g->map.tex_w.ptr = NULL;
 	g->map.tex_e.ptr = NULL;
-	g->map.c = 0;
-	g->map.f = 0;
+	g->map.c = -1;
+	g->map.f = -1;
 	g->map.grid_fd = -1;
 	g->map.grid = NULL;
 	g->map.copy_grid = NULL;
