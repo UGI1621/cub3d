@@ -6,13 +6,13 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:31:00 by saan              #+#    #+#             */
-/*   Updated: 2026/01/24 09:41:12 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 19:31:05 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int error_msg(char *msg)
+int	error_msg(char *msg)
 {
 	ft_putendl_fd(msg, 1);
 	return (1);

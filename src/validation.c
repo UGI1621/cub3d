@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 09:20:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 19:32:24 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_right_extention(char *fname, char *ext)
 {
-	char *ptr;
+	char	*ptr;
 	int		ext_len;
 
 	ext_len = ft_strlen(ext);
@@ -26,7 +26,7 @@ int	is_right_extention(char *fname, char *ext)
 	return (1);
 }
 
-int is_right_map_element(char c, int *user)
+int	is_right_map_element(char c, int *user)
 {
 	if (c == ' ' || c == '1' || c == '0' || c == '\n')
 		return (1);
@@ -43,10 +43,10 @@ int is_right_map_element(char c, int *user)
 	return (0);
 }
 
-int valid_args(int ac, char **av, t_game *g)
+int	valid_args(int ac, char **av, t_game *g)
 {
-	int fd;
-	char dir_test;
+	int		fd;
+	char	dir_test;
 
 	if (ac != 2)
 		return (error_msg("Usage :: ./cub3d {path_of_cub_file}"));

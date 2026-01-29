@@ -6,15 +6,15 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:34:27 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 13:37:13 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 19:30:57 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void free_map(t_game *g)
+static void	free_map(t_game *g)
 {
-	int i;
+	int	i;
 
 	if (!g->map.grid)
 		return ;
@@ -28,7 +28,7 @@ static void free_map(t_game *g)
 	g->map.grid = NULL;
 }
 
-void cleanup_and_exit(t_game *g, int code)
+void	cleanup_and_exit(t_game *g, int code)
 {
 	free_map(g);
 	if (g->mlx && g->win)
@@ -52,7 +52,7 @@ void cleanup_and_exit(t_game *g, int code)
 
 void	free_grid(char **grid)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (grid[++i])

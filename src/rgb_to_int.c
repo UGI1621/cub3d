@@ -6,22 +6,22 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/01/27 01:44:07 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 19:32:21 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int is_fc(char *str)
+int	is_fc(char *str)
 {
 	if (*str == 'F' || *str == 'C')
 		return (1);
 	return (0);
 }
 
-static void free_2ptr(char **str)
+static void	free_2ptr(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -33,11 +33,11 @@ static void free_2ptr(char **str)
 	str = NULL;
 }
 
-static int append_value(t_game *g, char **rgb, char type)
+static int	append_value(t_game *g, char **rgb, char type)
 {
-	int re;
-	int gr;
-	int bl;
+	int	re;
+	int	gr;
+	int	bl;
 
 	re = ft_atoi(rgb[0]);
 	gr = ft_atoi(rgb[1]);
@@ -51,10 +51,10 @@ static int append_value(t_game *g, char **rgb, char type)
 	return (0);
 }
 
-int rgb_to_int(char *str, t_game *g)
+int	rgb_to_int(char *str, t_game *g)
 {
-	char type;
-	char **rgb;
+	char	type;
+	char	**rgb;
 
 	type = *(str++);
 	while (ft_isspace(*str))

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 18:10:32 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 20:26:53 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,154 +27,163 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include "mlx.h"
-
+# include <errno.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <errno.h>
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_img;
 
 typedef struct s_tex
 {
-	void	*ptr;
-	char	*addr;
-	int		w;
-	int		h;
-	int		bpp;
-	int		line_len;
-	int		endian;
-} t_tex;
+	void		*ptr;
+	char		*addr;
+	int			w;
+	int			h;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_tex;
 
 typedef struct s_map
 {
-	int		fd;
-	int		w;
-	int		h;
-	int		f;
-	int		c;
-	char	**grid;
-	char	**copy_grid;
-	int		grid_fd;
-	t_tex	tex_n;
-	t_tex	tex_s;
-	t_tex	tex_w;
-	t_tex	tex_e;
-}	t_map;
+	int			fd;
+	int			w;
+	int			h;
+	int			f;
+	int			c;
+	char		**grid;
+	char		**copy_grid;
+	int			grid_fd;
+	t_tex		tex_n;
+	t_tex		tex_s;
+	t_tex		tex_w;
+	t_tex		tex_e;
+}				t_map;
 
 typedef struct s_player
 {
-	double x;
-	double y;
-	double dir_x;
-	double dir_y;
-	// double fov;
-	double plane_x;
-	double plane_y;
-}	t_player;
+	double		x;
+	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
 
 typedef struct s_keys
 {
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
-}	t_keys;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
+}				t_keys;
 
 typedef struct s_rc
 {
-	int map_x;
-	int map_y;
-	double ray_dx;
-	double ray_dy;
-	double delta_dist_x;
-	double delta_dist_y;
-	double side_dist_x;
-	double side_dist_y;
-	double prep_dist;
-	int step_x;
-	int step_y;
-	int side;
-}	t_rc;
+	int			map_x;
+	int			map_y;
+	double		ray_dx;
+	double		ray_dy;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		prep_dist;
+	int			step_x;
+	int			step_y;
+	int			side;
+}				t_rc;
 
 typedef struct s_game
 {
-	void *mlx;
-	void *win;
-	t_img frame;
-	t_map map;
-	t_player pl;
-	t_keys keys;
-	t_rc	rc;
-}	t_game;
+	void		*mlx;
+	void		*win;
+	t_img		frame;
+	t_map		map;
+	t_player	pl;
+	t_keys		keys;
+	t_rc		rc;
+}				t_game;
 
 // calc_rc.c
-void calculate_rc(t_game *g, int x);
-void calc_append_delta_dist(t_game *g);
-void	calc_step_side_dist(t_game *g);
-void calc_delta_dists(t_game *g);
-void calc_ray(t_game *g, int x);
+void			calculate_rc(t_game *g, int x);
+void			calc_append_delta_dist(t_game *g);
+void			calc_step_side_dist(t_game *g);
+void			calc_delta_dists(t_game *g);
+void			calc_ray(t_game *g, int x);
 
 // cleanup.c
-void cleanup_and_exit(t_game *g, int code);
-void	free_grid(char **grid);
+void			cleanup_and_exit(t_game *g, int code);
+void			free_grid(char **grid);
 
 // error.c
-int error_msg(char *msg);
+int				error_msg(char *msg);
 
 // grid.c
-int	fill_grid(t_game *g);
+int				fill_grid(t_game *g);
 
 // init.c
-int	init_game(t_game *g);
+int				init_game(t_game *g);
 
 // input.c
-int on_key_press(int key, t_game *g);
-int	on_key_release(int key, t_game *g);
-int	on_close(t_game *g);
+int				can_move(t_game *g, double nx, double ny);
+int				on_key_press(int key, t_game *g);
+int				on_key_release(int key, t_game *g);
+int				on_close(t_game *g);
+
+// movement.c
+void			move_left_right(t_game *g, double rot);
+void			move_w(t_game *g, double move);
+void			move_a(t_game *g, double move);
+void			move_s(t_game *g, double move);
+void			move_d(t_game *g, double move);
 
 // parsing_cub.c
-int parsing_cub(t_game *g);
+int				parsing_cub(t_game *g);
 
 // parsing_map.c
-int parsing_map(t_game *g);
+int				parsing_map(t_game *g);
 
 // player.c
-int is_player(char **grid, int w, int h);
-void update_player_data(t_game *g, int w, int h, char dir);
+int				is_player(char **grid, int w, int h);
+void			update_player_data(t_game *g, int w, int h, char dir);
 
 // raycast.c
-int	is_wall(t_game *g, int mx, int my);
-void render_3d(t_game *g);
+int				is_wall(t_game *g, int mx, int my);
+void			render_3d(t_game *g);
 
 // render.c
-int 	game_loop(t_game *g);
-void	put_pixel(t_game *g, int x, int y, int color);
-void	clear_frame(t_game *g, int ceil_c, int floor_c);
+int				game_loop(t_game *g);
+void			put_pixel(t_game *g, int x, int y, int color);
+void			clear_frame(t_game *g, int ceil_c, int floor_c);
 
 // rgb_to_int.c
-int is_fc(char *str);
-int rgb_to_int(char *str, t_game *g);
+int				is_fc(char *str);
+int				rgb_to_int(char *str, t_game *g);
 
 // validation.c
-int valid_args(int ac, char **av, t_game *g);
-int	is_right_extention(char *fname, char *ext);
-int is_right_map_element(char c, int *user);
+int				valid_args(int ac, char **av, t_game *g);
+int				is_right_extention(char *fname, char *ext);
+int				is_right_map_element(char c, int *user);
 
 // xpm_to_image.c
-int is_texture(char *str);
-int check_texture(t_game *g);
-int xpm_to_image(char *str, t_game *g);
+int				is_texture(char *str);
+int				check_texture(t_game *g);
+int				xpm_to_image(char *str, t_game *g);
+
+// util.c
+double			cal_wall_x_val(t_game *g);
 
 #endif

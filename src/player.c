@@ -6,20 +6,21 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:58:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 19:17:20 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 19:32:11 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int is_player(char **grid, int w, int h)
+int	is_player(char **grid, int w, int h)
 {
-	if (grid[h][w] == 'N' || grid[h][w] == 'S' || grid[h][w] == 'E' || grid[h][w] == 'W')
+	if (grid[h][w] == 'N' || grid[h][w] == 'S' || grid[h][w] == 'E'
+		|| grid[h][w] == 'W')
 		return (1);
 	return (0);
 }
 
-void set_player_dir(t_game *g, char dir)
+void	set_player_dir(t_game *g, char dir)
 {
 	if (dir == 'N')
 	{
@@ -43,7 +44,7 @@ void set_player_dir(t_game *g, char dir)
 	}
 }
 
-void update_player_data(t_game *g, int w, int h, char dir)
+void	update_player_data(t_game *g, int w, int h, char dir)
 {
 	g->pl.x = w + 0.5;
 	g->pl.y = h + 0.5;

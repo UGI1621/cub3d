@@ -6,15 +6,15 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 14:03:57 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 20:25:49 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int copy_map_to_grid(t_game *g, char *str, int i)
+static int	copy_map_to_grid(t_game *g, char *str, int i)
 {
-	int j;
+	int	j;
 
 	g->map.grid[i] = (char *)ft_calloc(g->map.w + 1, sizeof(char));
 	if (!g->map.grid[i])
@@ -24,7 +24,8 @@ static int copy_map_to_grid(t_game *g, char *str, int i)
 	{
 		if (j >= (int)ft_strlen(str) || ft_isspace(str[j]))
 			g->map.grid[i][j] = 'X';
-		else if (str[j] == 'W' || str[j] == 'E' || str[j] == 'N' || str[j] == 'S')
+		else if (str[j] == 'W' || str[j] == 'E' || str[j] == 'N'
+			|| str[j] == 'S')
 			g->map.grid[i][j] = str[j];
 		else
 			g->map.grid[i][j] = str[j];
@@ -35,8 +36,9 @@ static int copy_map_to_grid(t_game *g, char *str, int i)
 
 void	print_grid(char **grid)
 {
-	int i = -1;
+	int	i;
 
+	i = -1;
 	printf("----------- grid -----------\n");
 	while (grid[++i])
 		printf("%s\n", grid[i]);
@@ -44,9 +46,9 @@ void	print_grid(char **grid)
 
 char	**copy_grid(char **grid)
 {
-	char **res;
-	int h;
-	int i;
+	char	**res;
+	int		h;
+	int		i;
 
 	h = 0;
 	while (grid[h])
@@ -61,11 +63,12 @@ char	**copy_grid(char **grid)
 	return (res);
 }
 
-void bfs(t_game *g, int w, int h, int *sig)
+void	bfs(t_game *g, int w, int h, int *sig)
 {
 	if (w < 0 || h < 0 || w > g->map.w || h > g->map.h)
 		return ;
-	if (!g->map.copy_grid[h][w] || g->map.copy_grid[h][w] == '1' || g->map.copy_grid[h][w] == 'B')
+	if (!g->map.copy_grid[h][w] || g->map.copy_grid[h][w] == '1'
+		|| g->map.copy_grid[h][w] == 'B')
 		return ;
 	if (g->map.copy_grid[h][w] == 'X')
 	{
@@ -83,10 +86,10 @@ void bfs(t_game *g, int w, int h, int *sig)
 	bfs(g, w, h - 1, sig);
 }
 
-static int validation_grid(t_game *g)
+static int	validation_grid(t_game *g)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 	int	sig;
 
 	sig = 0;

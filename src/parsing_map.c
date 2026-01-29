@@ -6,13 +6,13 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 09:38:43 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 19:32:08 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int is_only_space(char *str)
+static int	is_only_space(char *str)
 {
 	while (ft_isspace(*str))
 		str++;
@@ -21,9 +21,9 @@ static int is_only_space(char *str)
 	return (0);
 }
 
-static int make_grid_file(t_game *g)
+static int	make_grid_file(t_game *g)
 {
-	char *line;
+	char	*line;
 
 	g->map.grid_fd = open("map_grid.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (g->map.grid_fd == -1)
@@ -50,9 +50,9 @@ static int make_grid_file(t_game *g)
 	return (0);
 }
 
-static int is_valid_elements(char *str, int *ori_width, int *user)
+static int	is_valid_elements(char *str, int *ori_width, int *user)
 {
-	int new_width;
+	int	new_width;
 
 	new_width = 0;
 	while (str[new_width])
@@ -66,12 +66,12 @@ static int is_valid_elements(char *str, int *ori_width, int *user)
 	return (1);
 }
 
-static int check_element(t_game *g)
+static int	check_element(t_game *g)
 {
-	char *line;
-	int height;
-	int width;
-	int user;
+	char	*line;
+	int		height;
+	int		width;
+	int		user;
 
 	user = 0;
 	height = 0;
@@ -93,7 +93,7 @@ static int check_element(t_game *g)
 	return (0);
 }
 
-int parsing_map(t_game *g)
+int	parsing_map(t_game *g)
 {
 	if (make_grid_file(g))
 		return (1);

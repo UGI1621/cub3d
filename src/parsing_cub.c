@@ -6,15 +6,15 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/01/28 13:42:19 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/29 20:25:19 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int parse_sig(char *str, t_game *g)
+int	parse_sig(char *str, t_game *g)
 {
-	int len;
+	int	len;
 
 	if (!(*str))
 		return (0);
@@ -33,20 +33,21 @@ int parse_sig(char *str, t_game *g)
 	return (0);
 }
 
-int is_map_turn(t_game *g)
+int	is_map_turn(t_game *g)
 {
-	if (!g->map.c || !g->map.f || !g->map.tex_e.ptr || !g->map.tex_n.ptr || !g->map.tex_s.ptr || !g->map.tex_w.ptr)
+	if (!g->map.c || !g->map.f || !g->map.tex_e.ptr || !g->map.tex_n.ptr
+		|| !g->map.tex_s.ptr || !g->map.tex_w.ptr)
 		return (0);
 	return (1);
 }
 
-int parsing_cub(t_game *g)
+int	parsing_cub(t_game *g)
 {
 	char	*line;
 	char	*temp;
 
 	line = get_next_line(g->map.fd);
-	while(line)
+	while (line)
 	{
 		temp = line;
 		while (ft_isspace(*line))
@@ -54,7 +55,7 @@ int parsing_cub(t_game *g)
 		if (parse_sig(line, g))
 		{
 			free(temp);
-			return (1); // 순서 안맞음
+			return (error_msg("Error :: inavlid order of cub file"));
 		}
 		free(temp);
 		if (is_map_turn(g))
@@ -62,6 +63,6 @@ int parsing_cub(t_game *g)
 		line = get_next_line(g->map.fd);
 	}
 	if (check_texture(g))
-			return (1);
+		return (1);
 	return (0);
 }
