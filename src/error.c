@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 00:31:00 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 04:53:30 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 17:35:40 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	error_msg(char *msg)
 
 int error_elements(t_game *g)
 {
+	if (check_texture(g))
+		return (1);
 	if (is_map_turn(g))
 		return (error_msg("Error :: unexpected element"));
 	return (error_msg("Error :: required element is not defined"));

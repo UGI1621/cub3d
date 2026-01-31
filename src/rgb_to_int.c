@@ -6,18 +6,11 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 02:13:03 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 18:19:00 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	is_fc(char *str)
-{
-	if (*str == 'F' || *str == 'C')
-		return (1);
-	return (0);
-}
 
 static void	free_2ptr(char **str)
 {
@@ -68,10 +61,31 @@ static int	append_value(t_game *g, char **rgb, char type)
 	return (0);
 }
 
+static int valid_rgb(char **rgb)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (rgb[i])
+	{
+		j = 0;
+		while (rgb[i][j])
+		{
+			if (!ft_isdigit(rgb[i][j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	rgb_to_int(char *str, t_game *g)
 {
 	char	type;
 	char	**rgb;
+	int		i;
 
 	type = *(str++);
 	while (ft_isspace(*str))
@@ -79,6 +93,14 @@ int	rgb_to_int(char *str, t_game *g)
 	rgb = ft_split(str, ',');
 	if (!rgb)
 		return (error_msg("Error :: split fail"));
+	i = 0;
+	while (rgb[i])
+		i++;
+	if (i != 3 || valid_rgb(rgb))
+	{
+		free_2ptr(rgb);
+		return (error_msg("Error :: invalid define rgb"));
+	}
 	if (append_value(g, rgb, type))
 	{
 		free_2ptr(rgb);

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 19:32:08 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 19:17:59 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	parsing_map(t_game *g)
 		return (1);
 	if (check_element(g))
 		return (1);
-	g->map.grid = (char **)ft_calloc(g->map.h + 1, sizeof(char *));
+	g->map.grid = (char **)ft_calloc(g->map.h + 3, sizeof(char *));
 	if (!g->map.grid)
 		return (error_msg("Error :: fail malloc"));
 	if (fill_grid(g))

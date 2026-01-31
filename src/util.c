@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:59:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 20:26:14 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 19:22:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,4 @@ double	cal_wall_x_val(t_game *g)
 	wall_x -= floor(wall_x);
 	return (wall_x);
 }
+
