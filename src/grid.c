@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/01/31 19:22:09 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 20:23:07 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@ static int	copy_map_to_grid(t_game *g, char *str, int i)
 {
 	int	j;
 
-	g->map.grid[i] = (char *)ft_calloc(g->map.w + 2, sizeof(char));
+	g->map.grid[i] = (char *)ft_calloc(g->map.w + 1, sizeof(char));
 	if (!g->map.grid[i])
 		return (error_msg("Error :: grid : malloc error"));
-	g->map.grid[i][0] = 'X';
-	j = 1;
+	j = 0;
 	while (j < g->map.w)
 	{
 		if (j >= (int)ft_strlen(str) || ft_isspace(str[j]))
@@ -79,8 +78,8 @@ void	bfs(t_game *g, int w, int h, int *sig)
 	if (is_player(g->map.copy_grid, w, h))
 		update_player_data(g, w, h, g->map.copy_grid[h][w]);
 	g->map.copy_grid[h][w] = 'B';
-	print_grid(g->map.copy_grid);
-	usleep(50000); // 1000000 = 1sec
+	// print_grid(g->map.copy_grid);
+	// usleep(50000); // 1000000 = 1sec
 	bfs(g, w + 1, h, sig);
 	bfs(g, w - 1, h, sig);
 	bfs(g, w, h + 1, sig);

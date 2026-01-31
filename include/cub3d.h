@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 05:54:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 20:26:47 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,10 @@ void			put_pixel(t_game *g, int x, int y, int color);
 void			clear_frame(t_game *g, int ceil_c, int floor_c);
 
 // rgb_to_int.c
-int				is_fc(char *str);
 int				rgb_to_int(char *str, t_game *g);
+
+// validation_xpm.c
+int				valid_xpm_file(int fd);
 
 // validation.c
 int				is_texture(char *str);

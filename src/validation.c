@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 06:01:41 by saan             ###   ########.fr       */
+/*   Updated: 2026/01/31 20:29:58 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int	valid_files(char *str, char* type)
 		free(type);
 		close(fd);
 		return (error_msg("Error :: xmp : is directory"));
+	}
+	if (!valid_xpm_file(fd))
+	{
+		free(type);
+		return (1);
 	}
 	close(fd);
 	return (0);

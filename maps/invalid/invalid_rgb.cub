@@ -1,9 +1,9 @@
             NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
-EA ./textures/invalid/ieast_info.xpm
+EA ./textures/east.xpm
 
-F 80,80,80
+F 80,80
 C 200,200,200
 
 111111111111
