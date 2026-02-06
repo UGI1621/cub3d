@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:15:20 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 03:00:01 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 19:05:00 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ int	main(int ac, char **av)
 {
 	t_game	g;
 
-	if (valid_args(ac, av, &g))
-		return (1);
 	if (init_game(&g))
 		return (1);
+	if (valid_args(ac, av, &g))
+		return (1);
+	if (valid_xpm(av[1], &g))
+		return (1);
+	if (init_mlx(&g))
+		return (error_msg("Error :: Faile init mlx"));
 	if (parsing_cub(&g))
 	{
 		cleanup_and_exit(&g, 1);

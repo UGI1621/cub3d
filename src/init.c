@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 03:00:31 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 19:26:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ static void	init_map_info(t_game *g)
 	g->map.tex_s.ptr = NULL;
 	g->map.tex_w.ptr = NULL;
 	g->map.tex_e.ptr = NULL;
+	g->map.tp_n = NULL;
+	g->map.tp_s = NULL;
+	g->map.tp_w = NULL;
+	g->map.tp_e = NULL;
 	g->map.c = -1;
 	g->map.f = -1;
 	g->map.grid_fd = -1;
@@ -54,6 +58,11 @@ int	init_game(t_game *g)
 	init_map_info(g);
 	init_player_info(g);
 	init_keys(g);
+	return (0);
+}
+
+int init_mlx(t_game *g)
+{
 	g->mlx = mlx_init();
 	if (!g->mlx)
 		return (1);
@@ -65,5 +74,7 @@ int	init_game(t_game *g)
 		return (1);
 	g->frame.addr = mlx_get_data_addr(g->frame.img, &g->frame.bpp,
 			&g->frame.line_len, &g->frame.endian);
+	if (!g->frame.addr)
+		return (1);
 	return (0);
 }

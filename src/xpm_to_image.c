@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 13:52:49 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 19:26:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,26 @@ int	check_texture(t_game *g)
 	return (0);
 }
 
-static int is_already_def(t_game *g, char *type)
+int is_already_def(t_game *g, char *type)
 {
 	if (!ft_strncmp(type, "NO", 2))
 	{
-		if (g->map.tex_n.ptr)
+		if (g->map.tp_n)
 			return (error_msg("Error :: multiple define of wall texture"));
 	}
 	if (!ft_strncmp(type, "SO", 2))
 	{
-		if (g->map.tex_s.ptr)
+		if (g->map.tp_s)
 			return (error_msg("Error :: multiple define of wall texture"));
 	}
 	if (!ft_strncmp(type, "WE", 2))
 	{
-		if (g->map.tex_w.ptr)
+		if (g->map.tp_w)
 			return (error_msg("Error :: multiple define of wall texture"));
 	}
 	if (!ft_strncmp(type, "EA", 2))
 	{
-		if (g->map.tex_e.ptr)
+		if (g->map.tp_e)
 			return (error_msg("Error :: multiple define of wall texture"));
 	}
 	return (0);
@@ -80,11 +80,11 @@ static int is_already_def(t_game *g, char *type)
 
 static int xpm_file_to_image(t_game *g, char *str, char *type)
 {
-	if (!is_right_extention(str, "xpm"))
-	{
-		free(type);
-		return (error_msg("Error :: invalid define xpm file"));
-	}
+// 	if (!is_right_extention(str, "xpm"))
+// 	{
+// 		free(type);
+// 		return (error_msg("Error :: invalid define xpm file"));
+// 	}
 	if (!ft_strncmp(type, "NO", 2))
 		g->map.tex_n.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_n.w,
 				&g->map.tex_n.h);
@@ -105,16 +105,16 @@ int	xpm_to_image(char *str, t_game *g)
 	char	*type;
 
 	type = ft_substr(str, 0, 2);
-	if (is_already_def(g, type))
-	{
-		free(type);
-		return (1);
-	}
+	// if (is_already_def(g, type))
+	// {
+	// 	free(type);
+	// 	return (1);
+	// }
 	str += 2;
 	while (ft_isspace(*str))
 		str++;
-	if (valid_files(str, type))
-		return (1);
+	// if (valid_files(str, type))
+	// 	return (1);
 	if (xpm_file_to_image(g, str, type))
 		return (1);
 	free(type);

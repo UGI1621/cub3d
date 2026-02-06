@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 13:19:12 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 20:21:07 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # define WIN_W 1280
 # define WIN_H 720
-# define XPM_W 16
-# define XPM_H 16
+
+# define XPM_W 128
+# define XPM_H 128
+# define XPM_CPP 2
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -66,6 +68,10 @@ typedef struct s_map
 	char		**grid;
 	char		**copy_grid;
 	int			grid_fd;
+	char		*tp_n;
+	char		*tp_s;
+	char		*tp_w;
+	char		*tp_e;
 	t_tex		tex_n;
 	t_tex		tex_s;
 	t_tex		tex_w;
@@ -139,6 +145,7 @@ int				fill_grid(t_game *g);
 
 // init.c
 int				init_game(t_game *g);
+int init_mlx(t_game *g);
 
 // input.c
 int				can_move(t_game *g, double nx, double ny);
@@ -174,10 +181,24 @@ void			put_pixel(t_game *g, int x, int y, int color);
 void			clear_frame(t_game *g, int ceil_c, int floor_c);
 
 // rgb_to_int.c
+int valid_rgb(char **rgb);
 int				rgb_to_int(char *str, t_game *g);
 
+
+// extraction_xpm.c
+int	put_texture_path(t_game *g, char *line);
+int	extraction_texture_path(t_game *g, int fd);
+
+
 // validation_xpm.c
-int				valid_xpm_file(int fd);
+// int				valid_xpm_file(int fd);
+int	valid_xpm(char *filename, t_game *g);
+
+// xpm_header.c
+int check_xpm_header(char *line, int *cn);
+
+// xpm_color_def.c
+int check_xpm_color_def(int fd, int *cn);
 
 // validation.c
 int				is_texture(char *str);
@@ -187,10 +208,13 @@ int				is_right_map_element(char c, int *user);
 int				valid_files(char * str, char* type);
 
 // xpm_to_image.c
+int				is_already_def(t_game *g, char *type);
 int				check_texture(t_game *g);
 int				xpm_to_image(char *str, t_game *g);
 
 // util.c
 double			cal_wall_x_val(t_game *g);
+int	two_ptr_len(char **ptr);
+void			gnl_drain(int fd);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 13:19:51 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 20:21:00 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_already_def(t_game *g, char type)
+static int	is_already_def_cf(t_game *g, char type)
 {
 	if (type == 'F')
 	{
@@ -33,7 +33,7 @@ static int	append_value(t_game *g, char **rgb, char type)
 	int	gr;
 	int	bl;
 
-	if (is_already_def(g, type))
+	if (is_already_def_cf(g, type))
 		return (1);
 	re = ft_atoi(rgb[0]);
 	gr = ft_atoi(rgb[1]);
@@ -47,7 +47,7 @@ static int	append_value(t_game *g, char **rgb, char type)
 	return (0);
 }
 
-static int valid_rgb(char **rgb)
+int valid_rgb(char **rgb)
 {
 	int i;
 	int j;

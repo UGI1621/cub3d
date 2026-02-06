@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   validation_args.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 14:45:40 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 19:32:03 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ int	valid_files(char *str, char* type)
 		close(fd);
 		return (error_msg("Error :: xpm : is directory"));
 	}
-	if (valid_xpm_file(fd))
-	{
-		free(type);
-		return (1);
-	}
+	// if (valid_xpm_file(fd))
+	// {
+	// 	free(type);
+	// 	return (1);
+	// }
 	close(fd);
 	return (0);
 }
