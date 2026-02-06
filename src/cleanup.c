@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:34:27 by saan              #+#    #+#             */
-/*   Updated: 2026/01/30 01:46:08 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 13:19:12 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	cleanup_and_exit(t_game *g, int code)
 	exit(code);
 }
 
-void	free_grid(char **grid)
+void	free_2ptr(char **grid)
 {
 	int	i;
 

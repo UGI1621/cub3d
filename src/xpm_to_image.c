@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/01/31 17:32:34 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 13:52:49 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int	check_texture(t_game *g)
 	if (g->map.tex_n.ptr == NULL || g->map.tex_s.ptr == NULL
 		|| g->map.tex_w.ptr == NULL || g->map.tex_e.ptr == NULL)
 		return (error_msg("Error :: fail mlx_xpm_file_to_image"));
-	if (g->map.tex_n.w != 16 || g->map.tex_n.h != 16)
+	if (g->map.tex_n.w != XPM_W || g->map.tex_n.h != XPM_H)
 		return (error_msg("Error :: invalid size of xpm"));
-	if (g->map.tex_s.w != 16 || g->map.tex_s.h != 16)
+	if (g->map.tex_s.w != XPM_W || g->map.tex_s.h != XPM_H)
 		return (error_msg("Error :: invalid size of xpm"));
-	if (g->map.tex_e.w != 16 || g->map.tex_e.h != 16)
+	if (g->map.tex_e.w != XPM_W || g->map.tex_e.h != XPM_H)
 		return (error_msg("Error :: invalid size of xpm"));
-	if (g->map.tex_w.w != 16 || g->map.tex_w.h != 16)
+	if (g->map.tex_w.w != XPM_W || g->map.tex_w.h != XPM_H)
 		return (error_msg("Error :: invalid size of xpm"));
 	if (load_texture_info(g))
 		return (error_msg("Error :: fail mlx_get_data_addr"));

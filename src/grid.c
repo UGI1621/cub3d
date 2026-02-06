@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/01/31 20:23:07 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 13:19:12 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static int	validation_grid(t_game *g)
 			h++;
 		w = 0;
 	}
-	free_grid(g->map.copy_grid);
+	free_2ptr(g->map.copy_grid);
 	return (0);
 }
 

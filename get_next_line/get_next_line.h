@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 00:18:23 by saan              #+#    #+#             */
-/*   Updated: 2024/11/30 05:43:58 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 14:56:23 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 char	*get_next_line(int fd);
+void	clear_remain(char **remain);
+
 
 char	*ft_strdup(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);

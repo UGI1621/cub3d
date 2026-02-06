@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/01/31 20:26:47 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/06 13:19:12 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIN_W 1280
 # define WIN_H 720
+# define XPM_W 16
+# define XPM_H 16
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -126,7 +128,7 @@ void			calc_ray(t_game *g, int x);
 
 // cleanup.c
 void			cleanup_and_exit(t_game *g, int code);
-void			free_grid(char **grid);
+void			free_2ptr(char **grid);
 
 // error.c
 int				error_msg(char *msg);
@@ -182,7 +184,7 @@ int				is_texture(char *str);
 int				valid_args(int ac, char **av, t_game *g);
 int				is_right_extention(char *fname, char *ext);
 int				is_right_map_element(char c, int *user);
-int				valid_files(char *str, char* type);
+int				valid_files(char * str, char* type);
 
 // xpm_to_image.c
 int				check_texture(t_game *g);
