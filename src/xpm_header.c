@@ -6,25 +6,45 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 17:58:14 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 20:12:01 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/10 15:17:50 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_xpm_header(char *line, int *cn)
+static char **extract_info(char *line)
 {
 	char *trim;
+	char **res;
+
+	res = NULL;
+	if (!line)
+	{
+		ft_putstr_fd("Error :: invalid xpm header", 2);
+		return (NULL);
+	}
+	line[ft_strlen(line) - 1] = 0;
+	trim = ft_strtrim(line, "\",");
+	if (!trim)
+	{
+		ft_putstr_fd("Error :: failed malloc", 2);
+		return (NULL);
+	}
+	res = ft_split(trim, ' ');
+	free(trim);
+	if (!res)
+	{
+		ft_putstr_fd("Error :: failed malloc", 2);
+		return (NULL);
+	}
+	return (res);
+}
+
+int check_xpm_header(char *line, int *cn)
+{
 	char **info;
 
-	if (!line)
-		return (error_msg("Error :: invalid xpm header"));
-	trim = ft_strtrim(line, "\",\n");
-	if (!trim)
-		return (error_msg("Error :: failed malloc"));
-	info = ft_split(trim, ' ');
-	if (!info)
-		return (error_msg("Error :: failed malloc"));
+	info = extract_info(line);
 	if (two_ptr_len(info) != 4)
 	{
 		free_2ptr(info);

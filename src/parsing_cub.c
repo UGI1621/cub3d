@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 14:09:05 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/10 13:18:16 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static int	parse_sig(char *str, t_game *g)
 	}
 	else if (*str == 'F' || *str == 'C')
 	{
-		if (rgb_to_int(str, g))
-			return (1);
+		// if (rgb_to_int(str, g))
+		// 	return (1);
+		return (0);
 	}
 	else
 		return (error_elements(g));

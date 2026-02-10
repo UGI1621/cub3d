@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:34:27 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 13:19:12 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/09 11:23:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,21 @@ static void	free_map(t_game *g)
 	g->map.grid = NULL;
 }
 
+void	free_xpm_path(t_game *g)
+{
+	if (g->map.tp_e)
+		free(g->map.tp_e);
+	if (g->map.tp_s)
+		free(g->map.tp_s);
+	if (g->map.tp_w)
+		free(g->map.tp_w);
+	if (g->map.tp_n)
+		free(g->map.tp_n);
+}
+
 void	cleanup_and_exit(t_game *g, int code)
 {
+	free_xpm_path(g);
 	free_map(g);
 	if (g->mlx && g->win)
 		mlx_destroy_window(g->mlx, g->win);

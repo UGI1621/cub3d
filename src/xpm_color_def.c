@@ -6,13 +6,13 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 18:06:09 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 20:13:58 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/10 16:05:00 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int check_rgb_val(char *rgb)
+static int	check_rgb_val(char *rgb)
 {
 	int	i;
 
@@ -25,18 +25,17 @@ static int check_rgb_val(char *rgb)
 	i = 1;
 	while (i < 7)
 	{
-		if (!((rgb[i] >= '0' && rgb[i] <= '9')
-			|| (rgb[i] >= 'a' && rgb[i] <= 'f')
-			|| (rgb[i] >= 'A' && rgb[i] <= 'F')))
+		if (!((rgb[i] >= '0' && rgb[i] <= '9') || (rgb[i] >= 'a'
+					&& rgb[i] <= 'f') || (rgb[i] >= 'A' && rgb[i] <= 'F')))
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-static char **init_info(char *trim)
+static char	**init_info(char *trim)
 {
-	char **res;
+	char	**res;
 
 	res = (char **)ft_calloc(3, sizeof(char *));
 	if (!res)
@@ -44,17 +43,26 @@ static char **init_info(char *trim)
 		free(trim);
 		return (NULL);
 	}
-	res[0] = ft_substr(trim, 3, 1);
-	res[1] = ft_substr(trim, 5, 7);
+	res[0] = ft_substr(trim, XPM_CPP + 1, 1);
+	res[1] = ft_substr(trim, XPM_CPP + 3, 7);
 	res[2] = NULL;
 	free(trim);
+	if (!res[0] || !res[1])
+	{
+		if (res[0])
+			free(res[0]);
+		if (res[1])
+			free(res[1]);
+		free(res);
+		return (NULL);
+	}
 	return (res);
 }
 
-static int check_xpm_color_info(char *line)
+static int	check_xpm_color_info(char *line)
 {
-	char *trim;
-	char **info;
+	char	*trim;
+	char	**info;
 
 	trim = ft_strtrim(line, "\"\n");
 	if (!trim)
@@ -71,22 +79,28 @@ static int check_xpm_color_info(char *line)
 	return (0);
 }
 
-int check_xpm_color_def(int fd, int *cn)
+int	check_xpm_color_def(int fd, int *cn)
 {
-	int i;
-	char *line;
+	char	*line;
+	int		cnt;
 
-	i = 0;
-	while (i < *cn)
+	cnt = 0;
+	line = get_next_line(fd);
+	while (!ft_strnstr(line, "pixels", ft_strlen(line)))
 	{
-		line = get_next_line(fd);
+		if (!line)
+			break ;
+		cnt++;
 		if (check_xpm_color_info(line))
 		{
 			free(line);
 			return (1);
 		}
 		free(line);
-		i++;
+		line = get_next_line(fd);
 	}
+	free(line);
+	if (cnt != *cn)
+		return (error_msg("Error :: unmatched color amount with xpm header"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 20:21:07 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/09 13:58:28 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void			calc_ray(t_game *g, int x);
 
 // cleanup.c
 void			cleanup_and_exit(t_game *g, int code);
+void			free_xpm_path(t_game *g);
 void			free_2ptr(char **grid);
 
 // error.c
@@ -186,7 +187,6 @@ int				rgb_to_int(char *str, t_game *g);
 
 
 // extraction_xpm.c
-int	put_texture_path(t_game *g, char *line);
 int	extraction_texture_path(t_game *g, int fd);
 
 
