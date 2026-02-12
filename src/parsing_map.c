@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 20:15:28 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 16:25:48 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	make_grid_file(t_game *g)
 	while (1)
 	{
 		line = get_next_line(g->map.fd);
-		if (is_only_space(line))
+		if (*line == 'F' || *line == 'C' ||is_only_space(line))
 		{
 			free(line);
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/09 13:58:28 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 14:37:16 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,9 @@ int	valid_xpm(char *filename, t_game *g);
 
 // xpm_header.c
 int check_xpm_header(char *line, int *cn);
+
+// xpm_pixel.c
+int	check_xpm_pixel(int fd);
 
 // xpm_color_def.c
 int check_xpm_color_def(int fd, int *cn);

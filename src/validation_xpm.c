@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:11:46 by saan              #+#    #+#             */
-/*   Updated: 2026/02/10 16:10:29 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 16:08:08 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ static int	val_info(char *path)
 	free(line);
 	if (check_xpm_color_def(fd, &cn))
 		return (free_drain(NULL, fd, 1));
+	if (check_xpm_pixel(fd))
+		return (free_drain(NULL, fd, 1));
 	gnl_drain(fd);
 	close(fd);
 	return (0);
@@ -107,7 +109,6 @@ int	valid_xpm(char *filename, t_game *g)
 		gnl_drain(fd);
 		close(fd);
 		close(g->map.fd);
-		free_xpm_path(g);
 		if (sig == 1)
 			return (error_msg("Error :: invalid path of texture"));
 		else
