@@ -6,11 +6,20 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:59:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 18:02:40 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 17:32:25 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	is_only_space(char *str)
+{
+	while (ft_isspace(*str))
+		str++;
+	if (!(*str))
+		return (1);
+	return (0);
+}
 
 double	cal_wall_x_val(t_game *g)
 {
@@ -33,6 +42,7 @@ int	two_ptr_len(char **ptr)
 		i++;
 	return (i);
 }
+
 
 void	gnl_drain(int fd)
 {

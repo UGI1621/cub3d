@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 19:26:14 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 17:40:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ int is_already_def(t_game *g, char *type)
 
 static int xpm_file_to_image(t_game *g, char *str, char *type)
 {
-// 	if (!is_right_extention(str, "xpm"))
-// 	{
-// 		free(type);
-// 		return (error_msg("Error :: invalid define xpm file"));
-// 	}
 	if (!ft_strncmp(type, "NO", 2))
 		g->map.tex_n.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_n.w,
 				&g->map.tex_n.h);
@@ -105,16 +100,9 @@ int	xpm_to_image(char *str, t_game *g)
 	char	*type;
 
 	type = ft_substr(str, 0, 2);
-	// if (is_already_def(g, type))
-	// {
-	// 	free(type);
-	// 	return (1);
-	// }
 	str += 2;
 	while (ft_isspace(*str))
 		str++;
-	// if (valid_files(str, type))
-	// 	return (1);
 	if (xpm_file_to_image(g, str, type))
 		return (1);
 	free(type);

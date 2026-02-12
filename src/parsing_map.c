@@ -6,46 +6,32 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 16:25:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 17:33:19 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_only_space(char *str)
-{
-	while (ft_isspace(*str))
-		str++;
-	if (!(*str))
-		return (1);
-	return (0);
-}
-
-static int	make_grid_file(t_game *g)
+static int	make_grid_file(t_game *g, int fd)
 {
 	char	*line;
 
 	g->map.grid_fd = open("map_grid.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (g->map.grid_fd == -1)
 		return (error_msg("Error :: open error"));
-	while (1)
+	line = get_next_line(fd);
+	while (line && is_only_space(line))
 	{
-		line = get_next_line(g->map.fd);
-		if (*line == 'F' || *line == 'C' ||is_only_space(line))
-		{
-			free(line);
-			continue ;
-		}
-		else
-			break ;
+		free(line);
+		line = get_next_line(fd);
 	}
 	while (line)
 	{
 		ft_putstr_fd(line, g->map.grid_fd);
 		free(line);
-		line = get_next_line(g->map.fd);
+		line = get_next_line(fd);
 	}
-	close(g->map.fd);
+	close(fd);
 	close(g->map.grid_fd);
 	return (0);
 }
@@ -93,9 +79,15 @@ static int	check_element(t_game *g)
 	return (0);
 }
 
-int	parsing_map(t_game *g)
+int	parsing_map(char *path, t_game *g)
 {
-	if (make_grid_file(g))
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (error_msg("Error :: fail open"));
+	gnl_to_map(fd);
+	if (make_grid_file(g, fd))
 		return (1);
 	if (check_element(g))
 		return (1);

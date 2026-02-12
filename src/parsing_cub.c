@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/02/10 13:18:16 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/12 17:42:55 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ static int	parse_sig(char *str, t_game *g)
 			return (1);
 	}
 	else if (*str == 'F' || *str == 'C')
-	{
-		// if (rgb_to_int(str, g))
-		// 	return (1);
 		return (0);
-	}
 	else
 		return (error_elements(g));
 	return (0);
@@ -38,7 +34,7 @@ static int	parse_sig(char *str, t_game *g)
 
 int	is_map_turn(t_game *g)
 {
-	if (g->map.c == -1 || g->map.f == -1 || !g->map.tex_e.ptr || !g->map.tex_n.ptr
+	if (!g->map.tex_e.ptr || !g->map.tex_n.ptr
 		|| !g->map.tex_s.ptr || !g->map.tex_w.ptr)
 		return (0);
 	return (1);
@@ -66,6 +62,7 @@ int	parsing_cub(t_game *g)
 			break ;
 		line = get_next_line(g->map.fd);
 	}
+	gnl_drain(g->map.fd);
 	if (check_texture(g))
 		return (1);
 	return (0);
