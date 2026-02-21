@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:41:41 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/21 18:01:28 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ static int	copy_map_to_grid(t_game *g, char *str, int i)
 {
 	int	j;
 
-	g->map.grid[i] = (char *)ft_calloc(g->map.w + 1, sizeof(char));
+	g->map.grid[i] = (char *)ft_calloc(g->map.w + 2, sizeof(char));
 	if (!g->map.grid[i])
 		return (error_msg("Error :: grid : malloc error"));
-	j = 0;
-	while (j < g->map.w)
+	g->map.grid[i][0] = 'X';
+	j = 1;
+	while (j < g->map.w + 1)
 	{
-		if (j >= (int)ft_strlen(str) || ft_isspace(str[j]))
+		if (j >= (int)ft_strlen(str) || ft_isspace(str[j-1]))
 			g->map.grid[i][j] = 'X';
-		else if (str[j] == 'W' || str[j] == 'E' || str[j] == 'N'
-			|| str[j] == 'S')
-			g->map.grid[i][j] = str[j];
+		else if (str[j-1] == 'W' || str[j-1] == 'E' || str[j-1] == 'N'
+			|| str[j-1] == 'S')
+			g->map.grid[i][j] = str[j-1];
 		else
-			g->map.grid[i][j] = str[j];
+			g->map.grid[i][j] = str[j-1];
 		j++;
 	}
 	return (0);
@@ -65,7 +66,7 @@ char	**copy_grid(char **grid)
 
 void	bfs(t_game *g, int w, int h, int *sig)
 {
-	if (w < 0 || h < 0 || w > g->map.w || h > g->map.h)
+	if (w < 0 || h < 0 || w > g->map.w + 1 || h > g->map.h + 1)
 		return ;
 	if (!g->map.copy_grid[h][w] || g->map.copy_grid[h][w] == '1'
 		|| g->map.copy_grid[h][w] == 'B')
@@ -78,8 +79,8 @@ void	bfs(t_game *g, int w, int h, int *sig)
 	if (is_player(g->map.copy_grid, w, h))
 		update_player_data(g, w, h, g->map.copy_grid[h][w]);
 	g->map.copy_grid[h][w] = 'B';
-	// print_grid(g->map.copy_grid);
-	// usleep(50000); // 1000000 = 1sec
+	print_grid(g->map.copy_grid);
+	usleep(50000); // 1000000 = 1sec
 	bfs(g, w + 1, h, sig);
 	bfs(g, w - 1, h, sig);
 	bfs(g, w, h + 1, sig);
@@ -96,6 +97,8 @@ static int	validation_grid(t_game *g)
 	w = 0;
 	h = 0;
 	g->map.copy_grid = copy_grid(g->map.grid);
+	if (valid_user_position(g->map.copy_grid))
+		return (3);
 	if (!g->map.copy_grid)
 		return (2);
 	while (g->map.copy_grid[h])
@@ -104,8 +107,8 @@ static int	validation_grid(t_game *g)
 			w++;
 		bfs(g, w, h, &sig);
 		if (sig)
-			return (1);
-		if (!(w < g->map.w - 1))
+			return (sig);
+		if (!(w < g->map.w + 1))
 			h++;
 		w = 0;
 	}
@@ -119,7 +122,7 @@ int	fill_grid(t_game *g)
 	int		i;
 	int		sig;
 
-	i = 0;
+	i = 1;
 	g->map.grid_fd = open("map_grid.txt", O_RDONLY);
 	while (1)
 	{
@@ -131,12 +134,9 @@ int	fill_grid(t_game *g)
 		free(line);
 		i++;
 	}
-	g->map.grid[g->map.h] = NULL;
 	close(g->map.grid_fd);
 	sig = validation_grid(g);
-	if (sig == 1)
-		return (error_msg("Error :: grid : not surrounded map"));
-	else if (sig == 2)
-		return (error_msg("Error :: copy_grid : fail malloc"));
+	if (sig)
+		return (handle_sig(sig, g));
 	return (0);
 }

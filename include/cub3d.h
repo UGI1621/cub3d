@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:33:14 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/21 18:05:11 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,5 +223,13 @@ int	is_only_space(char *str);
 double			cal_wall_x_val(t_game *g);
 int	two_ptr_len(char **ptr);
 void			gnl_drain(int fd);
+int	handle_sig(int sig, t_game *g);
+
+// player_position.c
+int	valid_user_position(char **grid);
+
+
+
+void	print_grid(char **grid);
 
 #endif

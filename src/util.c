@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:59:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:32:25 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/21 18:16:25 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	two_ptr_len(char **ptr)
 	return (i);
 }
 
-
 void	gnl_drain(int fd)
 {
 	char *line;
@@ -55,4 +54,18 @@ void	gnl_drain(int fd)
 			break;
 		free(line);
 	}
+}
+
+int	handle_sig(int sig, t_game *g)
+{
+	if (sig == 1)
+	{
+		free_2ptr(g->map.copy_grid);
+		return (error_msg("Error :: grid : not surrounded map"));
+	}
+	else if (sig == 2)
+		return (error_msg("Error :: copy_grid : fail malloc"));
+	else
+		free_2ptr(g->map.copy_grid);
+	return(1);
 }

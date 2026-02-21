@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:33:19 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/21 17:09:46 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	make_grid_file(t_game *g, int fd)
 	return (0);
 }
 
-static int	is_valid_elements(char *str, int *ori_width, int *user)
+static int	is_valid_elements(char *str, int *ori_width, int *user, int fd)
 {
 	int	new_width;
 
@@ -44,7 +44,12 @@ static int	is_valid_elements(char *str, int *ori_width, int *user)
 	while (str[new_width])
 	{
 		if (!is_right_map_element(str[new_width], user))
+		{
+			free(str);
+			gnl_drain(fd);
+			close(fd);
 			return (0);
+		}
 		new_width++;
 	}
 	if (*ori_width < new_width)
@@ -68,7 +73,7 @@ static int	check_element(t_game *g)
 		line = get_next_line(g->map.grid_fd);
 		if (!line)
 			break ;
-		if (!is_valid_elements(line, &width, &user))
+		if (!is_valid_elements(line, &width, &user, g->map.grid_fd))
 			return (error_msg("Error :: invalid map element"));
 		height++;
 		free(line);
@@ -76,6 +81,25 @@ static int	check_element(t_game *g)
 	g->map.h = height;
 	g->map.w = width;
 	close(g->map.grid_fd);
+	return (0);
+}
+
+static int	add_border_grid(t_game *g)
+{
+	int i;
+
+	g->map.grid[0] = (char *)ft_calloc(g->map.w + 2, sizeof(char));
+	g->map.grid[g->map.h + 1] = (char *)ft_calloc(g->map.w + 2, sizeof(char));
+	if (!g->map.grid[0] || !g->map.grid[g->map.h + 1])
+		return (1);
+	i = 0;
+	while (i < g->map.w + 1)
+	{
+		g->map.grid[0][i] = 'X';
+		g->map.grid[g->map.h + 1][i] = 'X';
+		i++;
+	}
+	g->map.grid[g->map.h + 2] = NULL;
 	return (0);
 }
 
@@ -91,8 +115,8 @@ int	parsing_map(char *path, t_game *g)
 		return (1);
 	if (check_element(g))
 		return (1);
-	g->map.grid = (char **)ft_calloc(g->map.h + 1, sizeof(char *));
-	if (!g->map.grid)
+	g->map.grid = (char **)ft_calloc(g->map.h + 3, sizeof(char *));
+	if (!g->map.grid || add_border_grid(g))
 		return (error_msg("Error :: fail malloc"));
 	if (fill_grid(g))
 		return (1);
