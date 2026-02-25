@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/02/21 18:01:28 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/22 20:05:26 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	copy_map_to_grid(t_game *g, char *str, int i)
 	{
 		if (j >= (int)ft_strlen(str) || ft_isspace(str[j-1]))
 			g->map.grid[i][j] = 'X';
-		else if (str[j-1] == 'W' || str[j-1] == 'E' || str[j-1] == 'N'
-			|| str[j-1] == 'S')
-			g->map.grid[i][j] = str[j-1];
+		// else if (str[j-1] == 'W' || str[j-1] == 'E' || str[j-1] == 'N'
+		// 	|| str[j-1] == 'S')
+		// 	g->map.grid[i][j] = str[j-1];
 		else
 			g->map.grid[i][j] = str[j-1];
 		j++;
@@ -79,8 +79,8 @@ void	bfs(t_game *g, int w, int h, int *sig)
 	if (is_player(g->map.copy_grid, w, h))
 		update_player_data(g, w, h, g->map.copy_grid[h][w]);
 	g->map.copy_grid[h][w] = 'B';
-	print_grid(g->map.copy_grid);
-	usleep(50000); // 1000000 = 1sec
+	// print_grid(g->map.copy_grid);
+	// usleep(50000); // 1000000 = 1sec
 	bfs(g, w + 1, h, sig);
 	bfs(g, w - 1, h, sig);
 	bfs(g, w, h + 1, sig);
@@ -97,10 +97,10 @@ static int	validation_grid(t_game *g)
 	w = 0;
 	h = 0;
 	g->map.copy_grid = copy_grid(g->map.grid);
-	if (valid_user_position(g->map.copy_grid))
-		return (3);
 	if (!g->map.copy_grid)
 		return (2);
+	if (valid_user_position(g->map.copy_grid))
+		return (3);
 	while (g->map.copy_grid[h])
 	{
 		while (g->map.copy_grid[h][w] && g->map.copy_grid[h][w] != '0')

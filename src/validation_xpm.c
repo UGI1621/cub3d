@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:11:46 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 16:08:08 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/22 17:56:31 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	valid_xpm(char *filename, t_game *g)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (1);
+		return (error_msg("Error :: open failed"));
 	sig = extraction_texture_path(g, fd);
 	if (sig)
 	{
@@ -110,7 +110,7 @@ int	valid_xpm(char *filename, t_game *g)
 		close(fd);
 		close(g->map.fd);
 		if (sig == 1)
-			return (error_msg("Error :: invalid path of texture"));
+			return (error_msg("Error :: fail malloc"));
 		else
 			return (1);
 	}

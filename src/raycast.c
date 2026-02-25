@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:52:46 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 20:24:21 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/25 17:32:59 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static void	draw_wall_column(t_game *g, int x, int top, int bot)
 	y = top;
 	while (y <= bot)
 	{
-		tex_y = (((y * 256 - WIN_H * 128 + (bot - top) * 128) * tex->h) / (bot
-					- top)) / 256;
-		color = *(int *)(tex->addr + tex_y * tex->line_len + tex_x * (tex->bpp
-					/ 8));
+		tex_y = (((((y << 8) - (WIN_H << 7) + ((bot - top) << 7)) * tex->h) / (bot
+					- top)) >> 8);
+		color = *(int *)(tex->addr + (tex_y * tex->line_len) + (tex_x * (tex->bpp
+					/ 8)));
 		put_pixel(g, x, y, color);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/02/21 17:21:34 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/22 18:18:48 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,7 @@ int	valid_args(int ac, char **av, t_game *g)
 	}
 	close(fd);
 	g->map.fd = open(av[1], O_RDONLY);
+	if (g->map.fd == - 1)
+		return (error_msg("Error :: open failed"));
 	return (0);
 }

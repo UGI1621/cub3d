@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:40:14 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/23 17:17:37 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,22 @@ int is_already_def(t_game *g, char *type)
 	if (!ft_strncmp(type, "NO", 2))
 	{
 		if (g->map.tp_n)
-			return (error_msg("Error :: multiple define of wall texture"));
+			return (1);
 	}
 	if (!ft_strncmp(type, "SO", 2))
 	{
 		if (g->map.tp_s)
-			return (error_msg("Error :: multiple define of wall texture"));
+			return (1);
 	}
 	if (!ft_strncmp(type, "WE", 2))
 	{
 		if (g->map.tp_w)
-			return (error_msg("Error :: multiple define of wall texture"));
+			return (1);
 	}
 	if (!ft_strncmp(type, "EA", 2))
 	{
 		if (g->map.tp_e)
-			return (error_msg("Error :: multiple define of wall texture"));
+			return (1);
 	}
 	return (0);
 }

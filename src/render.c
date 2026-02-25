@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:02:17 by saan              #+#    #+#             */
-/*   Updated: 2026/01/29 19:32:18 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/23 19:19:36 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	put_pixel(t_game *g, int x, int y, int color)
 {
-	char	*dst;
+	unsigned int	*dst;
 
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return ;
-	dst = g->frame.addr + (y * g->frame.line_len + x * (g->frame.bpp / 8));
-	*(unsigned int *)dst = (unsigned int)color;
+	dst = (unsigned int *)g->frame.addr;
+	dst[y * (g->frame.line_len / 4) + x] = color;
 }
 
 void	clear_frame(t_game *g, int ceil_c, int floor_c)
