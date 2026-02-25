@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:52:46 by saan              #+#    #+#             */
-/*   Updated: 2026/02/25 17:32:59 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/25 18:44:39 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ static t_tex	*choose_texture(t_game *g, int side, double ray_dx,
 	if (side == 0)
 	{
 		if (ray_dx > 0)
-			return (&g->map.tex_e);
-		else
 			return (&g->map.tex_w);
+		else
+			return (&g->map.tex_e);
 	}
 	else
 	{
 		if (ray_dy > 0)
-			return (&g->map.tex_n);
-		else
 			return (&g->map.tex_s);
+		else
+			return (&g->map.tex_n);
 	}
 }
 
