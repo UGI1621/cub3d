@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/27 21:54:08 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/27 23:39:10 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define KEY_D 100
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+
+# define TARGET_FPS 60
+# define FRAME_TIME (1.0 / TARGET_FPS)
 
 # include "get_next_line.h"
 # include "libft.h"

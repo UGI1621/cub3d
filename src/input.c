@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:33:24 by saan              #+#    #+#             */
-/*   Updated: 2026/02/27 21:54:50 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/27 23:54:27 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	on_key_press(int key, t_game *g)
 		g->keys.left = 1;
 	if (key == KEY_RIGHT)
 		g->keys.right = 1;
-	// apply_movement(g);
 	return (0);
 }
 
