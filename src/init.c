@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/02/22 20:35:59 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/27 21:50:56 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	init_game(t_game *g)
 	g->win = NULL;
 	g->frame.img = NULL;
 	g->map.grid = NULL;
+	g->lt = 0;
 	init_map_info(g);
 	init_player_info(g);
 	init_keys(g);

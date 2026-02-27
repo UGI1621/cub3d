@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/23 17:18:04 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/27 21:54:08 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_img
 {
@@ -123,6 +124,7 @@ typedef struct s_game
 	t_player	pl;
 	t_keys		keys;
 	t_rc		rc;
+	double		lt;
 }				t_game;
 
 // calc_rc.c
@@ -149,6 +151,7 @@ int				init_game(t_game *g);
 int init_mlx(t_game *g);
 
 // input.c
+void	apply_movement(t_game *g, double dt);
 int				can_move(t_game *g, double nx, double ny);
 int				on_key_press(int key, t_game *g);
 int				on_key_release(int key, t_game *g);
@@ -227,6 +230,8 @@ int	handle_sig(int sig, t_game *g);
 
 // player_position.c
 int	valid_user_position(char **grid);
+
+double	get_time(void);
 
 void	print_grid(char **grid);
 
