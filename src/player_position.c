@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 17:47:14 by saan              #+#    #+#             */
-/*   Updated: 2026/02/22 19:57:30 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:19:42 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	is_pl_surround(char **grid, int w, int h)
 		return (0);
 	return (1);
 }
+
 static void	find_user_position(char **grid, int *w, int *h, int *u)
 {
 	while (grid[*h])
@@ -44,9 +45,9 @@ static void	find_user_position(char **grid, int *w, int *h, int *u)
 
 int	valid_user_position(char **grid)
 {
-	int w;
-	int h;
-	int u;
+	int	w;
+	int	h;
+	int	u;
 
 	w = 0;
 	h = 0;
@@ -54,7 +55,7 @@ int	valid_user_position(char **grid)
 	find_user_position(grid, &w, &h, &u);
 	if (!u)
 		return (error_msg("Error :: no user here"));
-	if(!is_pl_surround(grid, w, h))
+	if (!is_pl_surround(grid, w, h))
 		return (error_msg("Error :: invalid user position"));
 	return (0);
 }

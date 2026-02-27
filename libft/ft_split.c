@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:52:46 by saan              #+#    #+#             */
-/*   Updated: 2024/11/07 22:04:12 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:14:45 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,21 @@ int	ft_word_count(char const *s, char c)
 {
 	int	s_word;
 	int	count;
+	int	i;
 
 	count = 0;
 	s_word = 0;
-	while (*(s++))
+	i = 0;
+	while (s[i])
 	{
-		if (!s_word && *s && *s != c)
+		if (!s_word && s[i] != c)
 		{
 			s_word = 1;
 			count++;
 		}
-		else if (s_word && *s == c)
+		else if (s_word && s[i] == c)
 			s_word = 0;
+		i++;
 	}
 	return (count);
 }

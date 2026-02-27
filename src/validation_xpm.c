@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:11:46 by saan              #+#    #+#             */
-/*   Updated: 2026/02/22 17:56:31 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 00:49:32 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	valid_xpm(char *filename, t_game *g)
 		close(fd);
 		close(g->map.fd);
 		if (sig == 1)
-			return (error_msg("Error :: fail malloc"));
+			return (error_msg("Error :: invalid path of file"));
 		else
 			return (1);
 	}

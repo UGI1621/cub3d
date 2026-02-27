@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/02/22 18:18:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:18:37 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	is_right_map_element(char c, int *user)
 	return (0);
 }
 
-int	valid_files(char *str, char* type)
+int	valid_files(char *str, char *type)
 {
-	char dir_test;
-	int	fd;
+	char	dir_test;
+	int		fd;
 
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
@@ -71,11 +71,6 @@ int	valid_files(char *str, char* type)
 		close(fd);
 		return (error_msg("Error :: xpm : is directory"));
 	}
-	// if (valid_xpm_file(fd))
-	// {
-	// 	free(type);
-	// 	return (1);
-	// }
 	close(fd);
 	return (0);
 }
@@ -104,7 +99,7 @@ int	valid_args(int ac, char **av, t_game *g)
 	}
 	close(fd);
 	g->map.fd = open(av[1], O_RDONLY);
-	if (g->map.fd == - 1)
+	if (g->map.fd == -1)
 		return (error_msg("Error :: open failed"));
 	return (0);
 }

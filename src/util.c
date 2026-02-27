@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 19:59:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/25 19:01:49 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:18:26 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ double	cal_wall_x_val(t_game *g)
 
 int	two_ptr_len(char **ptr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ptr[i])
@@ -45,13 +45,13 @@ int	two_ptr_len(char **ptr)
 
 void	gnl_drain(int fd)
 {
-	char *line;
+	char	*line;
 
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		free(line);
 	}
 }
@@ -67,5 +67,5 @@ int	handle_sig(int sig, t_game *g)
 		return (error_msg("Error :: copy_grid : fail malloc"));
 	else
 		free_2ptr(g->map.copy_grid);
-	return(1);
+	return (1);
 }

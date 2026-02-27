@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/02/10 12:58:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:16:30 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static int	append_value(t_game *g, char **rgb, char type)
 	return (0);
 }
 
-int valid_rgb(char **rgb)
+int	valid_rgb(char **rgb)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (rgb[i])

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/02/22 20:05:26 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:17:04 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,13 @@ static int	copy_map_to_grid(t_game *g, char *str, int i)
 	j = 1;
 	while (j < g->map.w + 1)
 	{
-		if (j >= (int)ft_strlen(str) || ft_isspace(str[j-1]))
+		if (j >= (int)ft_strlen(str) || ft_isspace(str[j - 1]))
 			g->map.grid[i][j] = 'X';
-		// else if (str[j-1] == 'W' || str[j-1] == 'E' || str[j-1] == 'N'
-		// 	|| str[j-1] == 'S')
-		// 	g->map.grid[i][j] = str[j-1];
 		else
-			g->map.grid[i][j] = str[j-1];
+			g->map.grid[i][j] = str[j - 1];
 		j++;
 	}
 	return (0);
-}
-
-void	print_grid(char **grid)
-{
-	int	i;
-
-	i = -1;
-	printf("----------- grid -----------\n");
-	while (grid[++i])
-		printf("%s\n", grid[i]);
 }
 
 char	**copy_grid(char **grid)
@@ -79,8 +66,6 @@ void	bfs(t_game *g, int w, int h, int *sig)
 	if (is_player(g->map.copy_grid, w, h))
 		update_player_data(g, w, h, g->map.copy_grid[h][w]);
 	g->map.copy_grid[h][w] = 'B';
-	// print_grid(g->map.copy_grid);
-	// usleep(50000); // 1000000 = 1sec
 	bfs(g, w + 1, h, sig);
 	bfs(g, w - 1, h, sig);
 	bfs(g, w, h + 1, sig);

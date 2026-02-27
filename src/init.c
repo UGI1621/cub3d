@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/02/27 21:50:56 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:15:41 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	init_game(t_game *g)
 	return (0);
 }
 
-int init_mlx(t_game *g)
+int	init_mlx(t_game *g)
 {
 	g->mlx = mlx_init();
 	if (!g->mlx)

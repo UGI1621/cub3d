@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:33:24 by saan              #+#    #+#             */
-/*   Updated: 2026/02/27 23:54:27 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:19:17 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@
 
 int	can_move(t_game *g, double nx, double ny)
 {
-	double	r = 0.2;
+	double	r;
 
-	if (nx + r >= g->map.w || nx - r < 0
-		|| ny + r >= g->map.h || ny - r < 0)
+	r = 0.2;
+	if (nx + r >= g->map.w || nx - r < 0 || ny + r >= g->map.h || ny - r < 0)
 		return (0);
-
 	if (g->map.grid[(int)ny][(int)(nx + r)] == '1')
 		return (0);
 	if (g->map.grid[(int)ny][(int)(nx - r)] == '1')
@@ -48,17 +47,16 @@ int	can_move(t_game *g, double nx, double ny)
 		return (0);
 	if (g->map.grid[(int)(ny - r)][(int)nx] == '1')
 		return (0);
-
 	return (1);
 }
 
 void	apply_movement(t_game *g, double dt)
 {
-	double m;
-	double r;
+	double	m;
+	double	r;
 
 	m = 3.0 * dt;
-	r = 2.0 *dt;
+	r = 2.0 * dt;
 	if (g->keys.left || g->keys.right)
 		move_left_right(g, r);
 	if (g->keys.w)

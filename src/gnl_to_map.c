@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 17:20:32 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:36:53 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:18:58 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	gtm_is_texture(char *line)
 void	gnl_to_map(int fd)
 {
 	char	*line;
-	int tex;
-	int fc;
+	int		tex;
+	int		fc;
 
 	tex = 0;
 	fc = 0;

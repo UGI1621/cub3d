@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/23 17:17:37 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:16:23 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_texture(t_game *g)
 	return (0);
 }
 
-int is_already_def(t_game *g, char *type)
+int	is_already_def(t_game *g, char *type)
 {
 	if (!ft_strncmp(type, "NO", 2))
 	{
@@ -78,7 +78,7 @@ int is_already_def(t_game *g, char *type)
 	return (0);
 }
 
-static int xpm_file_to_image(t_game *g, char *str, char *type)
+static int	xpm_file_to_image(t_game *g, char *str, char *type)
 {
 	if (!ft_strncmp(type, "NO", 2))
 		g->map.tex_n.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_n.w,

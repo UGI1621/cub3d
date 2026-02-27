@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/27 23:39:10 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:18:07 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-# define TARGET_FPS 60
-# define FRAME_TIME (1.0 / TARGET_FPS)
-
 # include "get_next_line.h"
 # include "libft.h"
 # include "mlx.h"
@@ -39,8 +36,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_img
 {
@@ -151,10 +148,10 @@ int				fill_grid(t_game *g);
 
 // init.c
 int				init_game(t_game *g);
-int init_mlx(t_game *g);
+int				init_mlx(t_game *g);
 
 // input.c
-void	apply_movement(t_game *g, double dt);
+void			apply_movement(t_game *g, double dt);
 int				can_move(t_game *g, double nx, double ny);
 int				on_key_press(int key, t_game *g);
 int				on_key_release(int key, t_game *g);
@@ -172,7 +169,7 @@ int				is_map_turn(t_game *g);
 int				parsing_cub(t_game *g);
 
 // parsing_map.c
-int	parsing_map(char *path, t_game *g);
+int				parsing_map(char *path, t_game *g);
 
 // player.c
 int				is_player(char **grid, int w, int h);
@@ -188,33 +185,31 @@ void			put_pixel(t_game *g, int x, int y, int color);
 void			clear_frame(t_game *g, int ceil_c, int floor_c);
 
 // rgb_to_int.c
-int valid_rgb(char **rgb);
+int				valid_rgb(char **rgb);
 int				rgb_to_int(char *str, t_game *g);
 
-
 // extraction_xpm.c
-int	extraction_texture_path(t_game *g, int fd);
-
+int				extraction_texture_path(t_game *g, int fd);
 
 // validation_xpm.c
 // int				valid_xpm_file(int fd);
-int	valid_xpm(char *filename, t_game *g);
+int				valid_xpm(char *filename, t_game *g);
 
 // xpm_header.c
-int check_xpm_header(char *line, int *cn);
+int				check_xpm_header(char *line, int *cn);
 
 // xpm_pixel.c
-int	check_xpm_pixel(int fd);
+int				check_xpm_pixel(int fd);
 
 // xpm_color_def.c
-int check_xpm_color_def(int fd, int *cn);
+int				check_xpm_color_def(int fd, int *cn);
 
 // validation.c
 int				is_texture(char *str);
 int				valid_args(int ac, char **av, t_game *g);
 int				is_right_extention(char *fname, char *ext);
 int				is_right_map_element(char c, int *user);
-int				valid_files(char * str, char* type);
+int				valid_files(char *str, char *type);
 
 // xpm_to_image.c
 int				is_already_def(t_game *g, char *type);
@@ -222,20 +217,20 @@ int				check_texture(t_game *g);
 int				xpm_to_image(char *str, t_game *g);
 
 // gnl_to_map.c
-void	gnl_to_map(int fd);
+void			gnl_to_map(int fd);
 
 // util.c
-int	is_only_space(char *str);
+int				is_only_space(char *str);
 double			cal_wall_x_val(t_game *g);
-int	two_ptr_len(char **ptr);
+int				two_ptr_len(char **ptr);
 void			gnl_drain(int fd);
-int	handle_sig(int sig, t_game *g);
+int				handle_sig(int sig, t_game *g);
 
 // player_position.c
-int	valid_user_position(char **grid);
+int				valid_user_position(char **grid);
 
-double	get_time(void);
-
-void	print_grid(char **grid);
+double			get_time(void);
+void			move_player_x(t_game *g, double dx);
+void			move_player_y(t_game *g, double dy);
 
 #endif

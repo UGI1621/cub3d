@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/02/21 17:09:46 by saan             ###   ########.fr       */
+/*   Updated: 2026/02/28 01:16:39 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	check_element(t_game *g)
 
 static int	add_border_grid(t_game *g)
 {
-	int i;
+	int	i;
 
 	g->map.grid[0] = (char *)ft_calloc(g->map.w + 2, sizeof(char));
 	g->map.grid[g->map.h + 1] = (char *)ft_calloc(g->map.w + 2, sizeof(char));
