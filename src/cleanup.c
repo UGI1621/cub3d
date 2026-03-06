@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 01:34:27 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 00:32:22 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/06 10:33:51 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	cleanup_and_exit(t_game *g, int code)
 		mlx_destroy_display(g->mlx);
 	free(g->mlx);
 	close(g->map.fd);
+	close(g->map.grid_fd);
 	unlink("map_grid.txt");
 	exit(code);
 }

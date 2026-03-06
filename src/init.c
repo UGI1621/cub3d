@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:58:01 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:15:41 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/06 10:41:44 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,22 @@ static void	init_player_info(t_game *g)
 
 static void	init_map_info(t_game *g)
 {
-	g->map.tex_n.ptr = NULL;
-	g->map.tex_s.ptr = NULL;
-	g->map.tex_w.ptr = NULL;
-	g->map.tex_e.ptr = NULL;
+	g->map.fd = -1;
+	g->map.w = 0;
+	g->map.h = 0;
+	g->map.f = -1;
+	g->map.c = -1;
+	g->map.grid = NULL;
+	g->map.copy_grid = NULL;
+	g->map.grid_fd = -1;
 	g->map.tp_n = NULL;
 	g->map.tp_s = NULL;
 	g->map.tp_w = NULL;
 	g->map.tp_e = NULL;
-	g->map.c = -1;
-	g->map.f = -1;
-	g->map.grid_fd = -1;
-	g->map.grid = NULL;
-	g->map.copy_grid = NULL;
+	g->map.tex_n.ptr = NULL;
+	g->map.tex_s.ptr = NULL;
+	g->map.tex_w.ptr = NULL;
+	g->map.tex_e.ptr = NULL;
 }
 
 int	init_game(t_game *g)
@@ -54,11 +57,11 @@ int	init_game(t_game *g)
 	g->mlx = NULL;
 	g->win = NULL;
 	g->frame.img = NULL;
-	g->map.grid = NULL;
-	g->lt = 0;
 	init_map_info(g);
 	init_player_info(g);
 	init_keys(g);
+	init_rc(g);
+	g->lt = 0;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 17:20:32 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:18:58 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/06 10:31:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	gnl_to_map(int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
+		if (!line)
+			break ;
 		if (gtm_is_texture(line))
 			tex++;
 		if (*line == 'F' || *line == 'C')

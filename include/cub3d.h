@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:18:07 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/06 10:41:07 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,9 @@ int				fill_grid(t_game *g);
 // init.c
 int				init_game(t_game *g);
 int				init_mlx(t_game *g);
+
+// init_rc.c
+void			init_rc(t_game *g);
 
 // input.c
 void			apply_movement(t_game *g, double dt);

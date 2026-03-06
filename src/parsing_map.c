@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:16:39 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/06 10:31:48 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static int	check_element(t_game *g)
 		height++;
 		free(line);
 	}
+	if (height == 0 || width == 0)
+		return (error_msg("Error :: empty file"));
 	g->map.h = height;
 	g->map.w = width;
 	close(g->map.grid_fd);
