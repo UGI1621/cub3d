@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/03/06 10:31:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/06 11:39:11 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ static int	check_element(t_game *g)
 		height++;
 		free(line);
 	}
-	if (height == 0 || width == 0)
-		return (error_msg("Error :: empty file"));
 	g->map.h = height;
 	g->map.w = width;
 	close(g->map.grid_fd);
@@ -112,7 +110,11 @@ int	parsing_map(char *path, t_game *g)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (error_msg("Error :: fail open"));
-	gnl_to_map(fd);
+	if (gnl_to_map(fd))
+	{
+		close(fd);
+		return (1);
+	}
 	if (make_grid_file(g, fd))
 		return (1);
 	if (check_element(g))
