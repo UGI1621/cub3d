@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 13:49:20 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 15:48:42 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,5 @@ int				valid_user_position(char **grid);
 double			get_time(void);
 void			move_player_x(t_game *g, double dx);
 void			move_player_y(t_game *g, double dy);
-
-// check_tex_fc.c
-int check_tex_fc(char *path);
 
 #endif
