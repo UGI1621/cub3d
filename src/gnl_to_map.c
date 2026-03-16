@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 17:20:32 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 14:17:16 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 15:50:35 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,19 @@ int	gtm_is_fc(char *line)
 	return (0);
 }
 
-int	gnl_to_map(int fd, char *path)
+int	gnl_to_map(int fd)
 {
 	char	*line;
 	int		tex;
 	int		fc;
-	(void)path;
+
 	tex = 0;
 	fc = 0;
-	// if (check_tex_fc(path))
-	// 	return (1);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (gtm_is_texture(line))
 			tex++;
 		if (gtm_is_fc(line))

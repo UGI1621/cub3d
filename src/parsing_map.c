@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 13:38:44 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 15:50:15 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	parsing_map(char *path, t_game *g)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (error_msg("Error :: fail open"));
-	if (gnl_to_map(fd, path))
+	if (gnl_to_map(fd))
 	{
 		close(fd);
 		return (1);

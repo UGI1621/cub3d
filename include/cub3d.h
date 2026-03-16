@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 15:48:42 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 15:50:32 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,9 +220,9 @@ int				check_texture(t_game *g);
 int				xpm_to_image(char *str, t_game *g);
 
 // gnl_to_map.c
-int				gnl_to_map(int fd, char *path);
-int	gtm_is_texture(char *line);
-int	gtm_is_fc(char *line);
+int				gnl_to_map(int fd);
+int				gtm_is_texture(char *line);
+int				gtm_is_fc(char *line);
 
 // util.c
 int				is_only_space(char *str);
