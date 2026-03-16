@@ -6,13 +6,13 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 17:20:32 by saan              #+#    #+#             */
-/*   Updated: 2026/03/06 11:36:29 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 13:48:59 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	gtm_is_texture(char *line)
+int	gtm_is_texture(char *line)
 {
 	while (ft_isspace(*line))
 		line++;
@@ -21,13 +21,23 @@ static int	gtm_is_texture(char *line)
 	return (0);
 }
 
-static int free_return_zero(char *line)
+int	gtm_is_fc(char *line)
 {
-	free(line);
+	while (ft_isspace(*line))
+		line++;
+	if (*line == 'F' || *line == 'C')
+		return (1);
 	return (0);
 }
 
-int	gnl_to_map(int fd)
+// static int handle_return(int tex, int fc)
+// {
+// 	if (tex < 4 || fc < 2)
+// 		return (error_msg("Error :: Missing texture or ceiling/floor definition."));
+// 	return (0);
+// }
+
+int	gnl_to_map(int fd, char *path)
 {
 	char	*line;
 	int		tex;
@@ -35,6 +45,8 @@ int	gnl_to_map(int fd)
 
 	tex = 0;
 	fc = 0;
+	if (check_tex_fc(path))
+		return (1);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -42,13 +54,11 @@ int	gnl_to_map(int fd)
 			break;
 		if (gtm_is_texture(line))
 			tex++;
-		if (*line == 'F' || *line == 'C')
+		if (gtm_is_fc(line))
 			fc++;
-		if (tex == 4 && fc == 2)
-			return (free_return_zero(line));
 		free(line);
+		if (tex == 4 && fc == 2)
+			break ;
 	}
-	if (tex != 4 || fc != 2)
-		return (error_msg("Error :: Missing texture or ceiling/floor definition."));
 	return (0);
 }

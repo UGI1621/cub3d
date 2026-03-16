@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/03/06 11:36:41 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 13:49:20 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,9 @@ int				check_texture(t_game *g);
 int				xpm_to_image(char *str, t_game *g);
 
 // gnl_to_map.c
-int				gnl_to_map(int fd);
+int				gnl_to_map(int fd, char *path);
+int	gtm_is_texture(char *line);
+int	gtm_is_fc(char *line);
 
 // util.c
 int				is_only_space(char *str);
@@ -235,5 +237,8 @@ int				valid_user_position(char **grid);
 double			get_time(void);
 void			move_player_x(t_game *g, double dx);
 void			move_player_y(t_game *g, double dy);
+
+// check_tex_fc.c
+int check_tex_fc(char *path);
 
 #endif
