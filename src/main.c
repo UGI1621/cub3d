@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:15:20 by saan              #+#    #+#             */
-/*   Updated: 2026/03/06 10:14:13 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 13:59:57 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	init_valid(int ac, char **av, t_game *g)
 		return (1);
 	if (valid_args(ac, av, g))
 		return (1);
-	if (parsing_map(av[1], g))
-		cleanup_and_exit(g, 1);
 	if (valid_xpm(av[1], g))
+		cleanup_and_exit(g, 1);
+	if (parsing_map(av[1], g))
 		cleanup_and_exit(g, 1);
 	return (0);
 }

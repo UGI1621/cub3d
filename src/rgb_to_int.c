@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 23:06:29 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:16:30 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/16 14:20:17 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static int	is_already_def_cf(t_game *g, char type)
 	if (type == 'F')
 	{
 		if (g->map.f != -1)
-			return (error_msg("Error :: multiple define RGB"));
+			return (error_msg("Error :: multiple define floor/ceiling"));
 	}
 	if (type == 'C')
 	{
 		if (g->map.c != -1)
-			return (error_msg("Error :: multiple define RGB"));
+			return (error_msg("Error :: multiple define floor/ceiling"));
 	}
 	return (0);
 }
