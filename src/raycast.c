@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:52:46 by saan              #+#    #+#             */
-/*   Updated: 2026/03/09 16:23:48 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/24 19:06:46 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	cal_tex_x_val(t_tex *tex, t_game *g, double wall_x)
 	return (tex_x);
 }
 
+// tex_y = (y - top) / (bot - top) * tex->h;
 static void	draw_wall_column(t_game *g, int x, int top, int bot)
 {
 	t_tex	*tex;

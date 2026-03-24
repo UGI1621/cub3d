@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 08:42:38 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:17:04 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/24 15:29:19 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**copy_grid(char **grid)
 	return (res);
 }
 
-void	bfs(t_game *g, int w, int h, int *sig)
+void	dfs(t_game *g, int w, int h, int *sig)
 {
 	if (w < 0 || h < 0 || w > g->map.w + 1 || h > g->map.h + 1)
 		return ;
@@ -66,10 +66,10 @@ void	bfs(t_game *g, int w, int h, int *sig)
 	if (is_player(g->map.copy_grid, w, h))
 		update_player_data(g, w, h, g->map.copy_grid[h][w]);
 	g->map.copy_grid[h][w] = 'B';
-	bfs(g, w + 1, h, sig);
-	bfs(g, w - 1, h, sig);
-	bfs(g, w, h + 1, sig);
-	bfs(g, w, h - 1, sig);
+	dfs(g, w + 1, h, sig);
+	dfs(g, w - 1, h, sig);
+	dfs(g, w, h + 1, sig);
+	dfs(g, w, h - 1, sig);
 }
 
 static int	validation_grid(t_game *g)
@@ -90,7 +90,7 @@ static int	validation_grid(t_game *g)
 	{
 		while (g->map.copy_grid[h][w] && g->map.copy_grid[h][w] != '0')
 			w++;
-		bfs(g, w, h, &sig);
+		dfs(g, w, h, &sig);
 		if (sig)
 			return (sig);
 		if (!(w < g->map.w + 1))

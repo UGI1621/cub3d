@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:14:59 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:16:23 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/24 15:36:18 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	is_already_def(t_game *g, char *type)
 	return (0);
 }
 
-static int	xpm_file_to_image(t_game *g, char *str, char *type)
+static void	xpm_file_to_image(t_game *g, char *str, char *type)
 {
 	if (!ft_strncmp(type, "NO", 2))
 		g->map.tex_n.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_n.w,
@@ -92,7 +92,6 @@ static int	xpm_file_to_image(t_game *g, char *str, char *type)
 	if (!ft_strncmp(type, "EA", 2))
 		g->map.tex_e.ptr = mlx_xpm_file_to_image(g->mlx, str, &g->map.tex_e.w,
 				&g->map.tex_e.h);
-	return (0);
 }
 
 int	xpm_to_image(char *str, t_game *g)
@@ -103,8 +102,7 @@ int	xpm_to_image(char *str, t_game *g)
 	str += 2;
 	while (ft_isspace(*str))
 		str++;
-	if (xpm_file_to_image(g, str, type))
-		return (1);
+	xpm_file_to_image(g, str, type);
 	free(type);
 	return (0);
 }

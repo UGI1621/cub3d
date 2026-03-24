@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 18:34:15 by saan              #+#    #+#             */
-/*   Updated: 2026/02/12 17:42:55 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/24 15:30:51 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	parsing_cub(t_game *g)
 			line++;
 		if (parse_sig(line, g))
 		{
-			get_next_line(-1);
+			gnl_drain(g->map.fd);
 			free(temp);
 			return (1);
 		}

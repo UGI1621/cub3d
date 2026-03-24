@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 00:29:08 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 15:50:15 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/24 15:25:14 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static int	check_element(t_game *g)
 	height = 0;
 	width = 0;
 	g->map.grid_fd = open("map_grid.txt", O_RDONLY);
+	if (g->map.grid_fd == -1)
+		return (error_msg("Error :: open failed"));
 	while (1)
 	{
 		line = get_next_line(g->map.grid_fd);
