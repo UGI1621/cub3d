@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:11:46 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 00:49:32 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/26 14:09:17 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	val_info(char *path)
 	cn = 0;
 	fd = open_xpm_file(path);
 	if (fd == -1)
-		return (1);
+		return (error_msg("Error :: open failed"));
 	if (gnl_to_xpm_header(fd))
 		return (1);
 	line = get_next_line(fd);
@@ -110,7 +110,7 @@ int	valid_xpm(char *filename, t_game *g)
 		close(fd);
 		close(g->map.fd);
 		if (sig == 1)
-			return (error_msg("Error :: invalid path of file"));
+			return (error_msg("Error :: malloc failed"));
 		else
 			return (1);
 	}

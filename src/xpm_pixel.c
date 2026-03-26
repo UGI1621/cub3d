@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 14:27:15 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:18:51 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/26 14:20:42 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_xpm_w(char *line)
 	char	*trim;
 
 	trim = ft_strtrim(line, "\n,");
-	if ((ft_strlen(trim) - 2) / (XPM_W * 2) != 1)
+	if ((ft_strlen(trim) - 2) % (XPM_W * 2) != 0)
 	{
 		free(trim);
 		free(line);
