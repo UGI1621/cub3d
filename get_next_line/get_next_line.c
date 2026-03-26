@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:11:35 by saan              #+#    #+#             */
-/*   Updated: 2026/02/06 14:38:17 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/26 18:20:03 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_read(int fd, char *buf, char **remain)
 	}
 }
 
-void *inavlid_fd(char *remain)
+void	*inavlid_fd(char *remain)
 {
 	free(remain);
 	remain = NULL;
