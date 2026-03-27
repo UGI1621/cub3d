@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:11:46 by saan              #+#    #+#             */
-/*   Updated: 2026/03/26 14:09:17 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/27 19:37:41 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	val_info(char *path)
 	cn = 0;
 	fd = open_xpm_file(path);
 	if (fd == -1)
-		return (error_msg("Error :: open failed"));
+		return (1);
 	if (gnl_to_xpm_header(fd))
 		return (1);
 	line = get_next_line(fd);

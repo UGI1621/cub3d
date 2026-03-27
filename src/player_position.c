@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/21 17:47:14 by saan              #+#    #+#             */
-/*   Updated: 2026/02/28 01:19:42 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/27 19:27:49 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	find_user_position(char **grid, int *w, int *h, int *u)
 	}
 }
 
-int	valid_user_position(char **grid)
+int	valid_user_position(t_game *g, char **grid)
 {
 	int	w;
 	int	h;
@@ -57,5 +57,6 @@ int	valid_user_position(char **grid)
 		return (error_msg("Error :: no user here"));
 	if (!is_pl_surround(grid, w, h))
 		return (error_msg("Error :: invalid user position"));
+	update_player_data(g, w, h, grid[h][w]);
 	return (0);
 }

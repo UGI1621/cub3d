@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 15:50:32 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/27 19:27:13 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ void			gnl_drain(int fd);
 int				handle_sig(int sig, t_game *g);
 
 // player_position.c
-int				valid_user_position(char **grid);
+int				valid_user_position(t_game *g, char **grid);
 
 double			get_time(void);
 void			move_player_x(t_game *g, double dx);

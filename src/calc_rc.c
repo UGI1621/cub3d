@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:21:52 by saan              #+#    #+#             */
-/*   Updated: 2026/03/23 16:54:13 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/27 19:31:09 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ void	calc_append_delta_dist(t_game *g)
 	{
 		if (g->rc.side_dist_x < g->rc.side_dist_y)
 		{
+			g->rc.side_dist_x += g->rc.delta_dist_x;
 			g->rc.map_x += g->rc.step_x;
 			g->rc.side = 0;
-			g->rc.side_dist_x += g->rc.delta_dist_x;
 		}
 		else
 		{
+			g->rc.side_dist_y += g->rc.delta_dist_y;
 			g->rc.map_y += g->rc.step_y;
 			g->rc.side = 1;
-			g->rc.side_dist_y += g->rc.delta_dist_y;
 		}
 	}
 	if (g->rc.side == 0)

@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 02:52:46 by saan              #+#    #+#             */
-/*   Updated: 2026/03/24 19:06:46 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/27 19:31:44 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	render_3d(t_game *g)
 	while (x < WIN_W)
 	{
 		calculate_rc(g, x);
-		if (g->rc.prep_dist < 0.0001)
-			g->rc.prep_dist = 0.0001;
+		if (g->rc.prep_dist < 0.01)
+			g->rc.prep_dist = 0.01;
 		line_h = (int)(WIN_H / g->rc.prep_dist);
 		top = WIN_H / 2 - line_h / 2;
 		bot = WIN_H / 2 + line_h / 2;
