@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 16:25:25 by saan              #+#    #+#             */
-/*   Updated: 2026/03/16 14:21:50 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/30 15:58:20 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,17 @@ static int	put_texture_path(t_game *g, char *line, char *temp)
 	char	*type;
 
 	type = ft_substr(line, 0, 2);
+	if (!type)
+		return (error_msg("Error :: malloc failed"));
 	line += 2;
 	while (ft_isspace(*line))
 		line++;
 	if (is_already_def(g, type))
 		return (emwf(type, temp, "Error :: multiple define wall texture"));
 	if (!is_right_extention(line, "xpm"))
-		return (emwf(type, temp, "Errror :: is not xpm file"));
-	if (!ft_strncmp(type, "NO", 2))
-		g->map.tp_n = ft_strdup(line);
-	if (!ft_strncmp(type, "SO", 2))
-		g->map.tp_s = ft_strdup(line);
-	if (!ft_strncmp(type, "WE", 2))
-		g->map.tp_w = ft_strdup(line);
-	if (!ft_strncmp(type, "EA", 2))
-		g->map.tp_e = ft_strdup(line);
+		return (emwf(type, temp, "Error :: is not xpm file"));
+	if (dup_texture_path(g, type, line))
+		return (1);
 	free(type);
 	return (0);
 }

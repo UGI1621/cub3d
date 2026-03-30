@@ -14,7 +14,7 @@ SRCS = \
 	src/error.c src/extraction_xpm.c src/gnl_to_map.c \
 	src/grid.c src/init.c src/input.c src/main.c \
 	src/move_player.c src/movement.c src/parsing_cub.c src/parsing_map.c src/player_position.c\
-	src/player.c src/raycast.c src/render.c src/rgb_to_int.c src/util.c \
+	src/player.c src/raycast.c src/render.c src/rgb_to_int.c src/util.c src/util2.c \
 	src/validation_args.c src/validation_xpm.c src/xpm_color_def.c src/xpm_header.c \
 	src/xpm_pixel.c src/xpm_to_image.c init_rc.c\
 	get_next_line/get_next_line.c \
@@ -26,7 +26,7 @@ OBJS = \
 	obj/error.o obj/extraction_xpm.o obj/gnl_to_map.o \
 	obj/grid.o obj/init.o obj/input.o obj/main.o \
 	obj/move_player.o obj/movement.o obj/parsing_cub.o obj/parsing_map.o obj/player_position.o\
-	obj/player.o obj/raycast.o obj/render.o obj/rgb_to_int.o obj/util.o \
+	obj/player.o obj/raycast.o obj/render.o obj/rgb_to_int.o obj/util.o obj/util2.o \
 	obj/validation_args.o obj/validation_xpm.o obj/xpm_color_def.o obj/xpm_header.o \
 	obj/xpm_pixel.o obj/xpm_to_image.o obj/init_rc.o\
 	obj/get_next_line.o obj/get_next_line_utils.o

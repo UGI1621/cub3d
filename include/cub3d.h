@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:53:18 by saan              #+#    #+#             */
-/*   Updated: 2026/03/27 19:27:13 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/30 15:39:32 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,9 +231,11 @@ int				two_ptr_len(char **ptr);
 void			gnl_drain(int fd);
 int				handle_sig(int sig, t_game *g);
 
+// util2.c
+int				dup_texture_path(t_game *g, char *type, char *path);
+
 // player_position.c
 int				valid_user_position(t_game *g, char **grid);
-
 double			get_time(void);
 void			move_player_x(t_game *g, double dx);
 void			move_player_y(t_game *g, double dy);

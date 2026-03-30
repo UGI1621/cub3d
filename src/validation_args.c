@@ -6,7 +6,7 @@
 /*   By: saan <saan@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 23:59:01 by saan              #+#    #+#             */
-/*   Updated: 2026/03/26 15:27:25 by saan             ###   ########.fr       */
+/*   Updated: 2026/03/30 16:03:39 by saan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	is_right_extention(char *fname, char *ext)
 	int		ext_len;
 	char	*filename;
 
-	filename = ft_strrchr(fname, '/') + 1;
+	filename = ft_strrchr(fname, '/');
 	ext_len = ft_strlen(ext);
 	ptr = ft_strrchr(fname, '.');
-	if (!ft_strncmp(ptr, filename, ft_strlen(ptr)))
+	if (!ptr || ptr != ft_strchr(filename, '.'))
 		return (0);
-	if (!ptr)
+	if (filename && !ft_strncmp(ptr, filename + 1, ft_strlen(ptr)))
 		return (0);
 	ptr++;
 	if ((ft_strlen(ptr) != (size_t)ext_len))
